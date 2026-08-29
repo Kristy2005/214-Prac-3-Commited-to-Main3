@@ -12,5 +12,5 @@ void Subject::detach(Observer* observer) {
 
 Subject::~Subject() {
 	// TODO - implement Subject::~Subject
-	throw "Not yet implemented";
+
 }
