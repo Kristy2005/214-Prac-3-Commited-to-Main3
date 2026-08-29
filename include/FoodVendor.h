@@ -2,6 +2,7 @@
 #define FOODVENDOR_H
 #include <string>
 #include "EventUnit.h"
+#include "Notice.h"
 
 class Notice;
 class FoodVendor : public EventUnit {
@@ -9,6 +10,7 @@ class FoodVendor : public EventUnit {
 private:
 	bool serving;
 	int stockLevel;
+	bool busy;
 
 public:
 	bool serveFood();
