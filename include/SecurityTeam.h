@@ -1,19 +1,27 @@
 #ifndef SECURITYTEAM_H
 #define SECURITYTEAM_H
+
 #include <string>
 #include "EventUnit.h"
+#include "Notice.h"
 
 class Notice;
-class SecurityTeam : public EventUnit {
+class StageGate;
+
+class SecurityTeam : public EventUnit
+{
+private:
+    bool deployed;
+    int peopleRemoved;
 
 public:
-	bool deployed;
+    SecurityTeam(std::string name);
 
-	void deploy();
+    void deploy();
 
-	void update(const Notice& notice);
+    bool removePerson(std::string reason, StageGate* gate);
 
-	SecurityTeam(std::string name);
+    void update(const Notice& notice);
 };
 
 #endif

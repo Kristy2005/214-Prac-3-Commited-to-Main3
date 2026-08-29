@@ -7,7 +7,7 @@
 
 class Notice;
 
-class EventUnit : public Observer, EventComponent {
+class EventUnit : public Observer,public EventComponent {
 
 protected:
 	int capacity;

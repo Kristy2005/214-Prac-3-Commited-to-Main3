@@ -2,6 +2,7 @@
 #define ENTRANCEGATE_H
 #include <string>
 #include "EventUnit.h"
+#include "Notice.h"
 
 class Notice;
 
