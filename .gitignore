@@ -1,0 +1,13 @@
+cat << 'EOF' > .gitignore
+# Build outputs and object files
+*.o
+*.out
+eventflow
+bin/
+build/
+
+# Temp & Lock Files
+*.vpp.lck
+*.vpp_bak_*
+~$*
+EOF
