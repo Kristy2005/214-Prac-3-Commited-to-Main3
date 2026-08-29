@@ -1,19 +1,28 @@
 #ifndef MEDICALTEAM_H
 #define MEDICALTEAM_H
+
 #include <string>
 #include "EventUnit.h"
+#include "Notice.h"
 
 class Notice;
-class MedicalTeam : public EventUnit {
+
+class MedicalTeam : public EventUnit
+{
+private:
+    bool available;
+    int currentPatients;
+    int maxPatients;
+    int medicalSupplies;
 
 public:
-	bool available;
+    MedicalTeam(std::string name, int maxPatients, int medicalSupplies);
 
-	void treatPatient(int severity);
+    bool treatPatient(int severity);
 
-	void update(const Notice& notice);
+    void dischargePatient();
 
-	MedicalTeam(std::string name);
+    void update(const Notice& notice);
 };
 
 #endif

@@ -1,5 +1,6 @@
 #ifndef EVENTGROUP_H
 #define EVENTGROUP_H
+
 #include <vector>
 #include <string>
 #include "EventComponent.h"
@@ -8,32 +9,23 @@
 
 class Notice;
 
-class EventGroup : public EventComponent, Subject, Observer {
-
+class EventGroup : public EventComponent, public Subject, public Observer
+{
 private:
-	std::vector<EventComponent*> children;
-	bool isOpen;
+    std::vector<EventComponent*> children;
+    bool isOpen;
 
 public:
-	void add(EventComponent* child);
-
-	EventComponent* remove(EventComponent* child);
-
-	void open();
-
-	void close();
-
-	void reportStatus() const;
-
-	int getCapacity() const;
-
-	void update(const Notice& notice);
-
-	void notify(const Notice& notice);
-
-	~EventGroup();
-
-	EventGroup(std::string name);
+    EventGroup(std::string name);
+    void add(EventComponent* child);
+    EventComponent* remove(EventComponent* child);
+    void open() override;
+    void close() override;
+    void reportStatus() const override;
+    int getCapacity() const override;
+    void update(const Notice& notice) override;
+    void notify(const Notice& notice) override;
+    ~EventGroup() override;
 };
 
 #endif
