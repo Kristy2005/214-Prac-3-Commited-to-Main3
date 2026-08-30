@@ -1,5 +1,6 @@
 #include "MedicalTeam.h"
 #include <iostream>
+#include "Notice.h"
 
 bool MedicalTeam::treatPatient(int severity){
 

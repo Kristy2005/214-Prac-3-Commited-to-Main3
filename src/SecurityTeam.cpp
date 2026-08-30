@@ -1,5 +1,6 @@
 #include "SecurityTeam.h"
 #include "StageGate.h"
+#include "Notice.h"
 #include <iostream>
 
 //constructor
