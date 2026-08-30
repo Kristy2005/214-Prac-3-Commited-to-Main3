@@ -1,28 +1,36 @@
 #include "EventUnit.h"
+#include <iostream>
 
-void EventUnit::open() {
-	// TODO - implement EventUnit::open
-	throw "Not yet implemented";
+void EventUnit::open(){
+    
+    isOpen = true;
+    std::cout << getName() << " is open" << std::endl;
 }
 
-void EventUnit::close() {
-	// TODO - implement EventUnit::close
-	throw "Not yet implemented";
+void EventUnit::close(){
+
+    isOpen = false;
+    std::cout << getName() << " is closed" << std::endl;
 }
 
-void EventUnit::reportStatus() const {
-	// TODO - implement EventUnit::reportStatus
-	throw "Not yet implemented";
+void EventUnit::reportStatus() const{
+    
+	if (isOpen == true){
+        std::cout << getName() << " is open" << std::endl;
+    }
+    else{
+        std::cout << getName() << " is closed" << std::endl;
+    }
 }
 
-int EventUnit::getCapacity() const {
-	return this->capacity;
+int EventUnit::getCapacity() const{
+    return capacity;
 }
 
-EventUnit::~EventUnit() {
-	// TODO - implement EventUnit::~EventUnit
-	throw "Not yet implemented";
+EventUnit::~EventUnit()
+{
+    // no dynamic objects
 }
 
 EventUnit::EventUnit(std::string name, int capacity)
-    : EventComponent(name), capacity(capacity), isOpen(false){}
+    : EventComponent(name),capacity(capacity),isOpen(false){}

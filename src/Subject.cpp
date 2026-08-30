@@ -38,8 +38,6 @@ void Subject::detach(Observer* observer) {
 }
 
 Subject::~Subject() {
-	for(Observer* er: this->observers){
-		this->detach(er);
-	}
-	this->observers.clear();
+	// TODO - implement Subject::~Subject
+
 }

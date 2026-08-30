@@ -12,12 +12,13 @@ private:
 	bool admitting;
 	Stage* controlledStage;
 
+
 public:
 	bool canAdmit() const;
 
 	bool admitAttendee();
 
-	void attendeeLeaves();
+	bool attendeeLeaves();
 
 	int getOccupancy() const;
 
