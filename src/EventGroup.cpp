@@ -13,9 +13,36 @@ void EventGroup::add(EventComponent* child) {
 	}
 
 	this->children.push_back(child);
+void EventGroup::add(EventComponent* child) {
+	if(child == nullptr)return;
+
+	auto it = this->children.begin();
+	while(it != this->children.end()){
+		if(*it == child){
+			return;
+		}else{
+			++it;
+		}
+	}
+
+	this->children.push_back(child);
 }
 
 
+EventComponent* EventGroup::remove(EventComponent* child) {
+	if(child == nullptr)return nullptr;
+
+	auto it = this->children.begin();
+	while(it != this->children.end()){
+		if(*it == child){
+			EventComponent* removed = *it;
+			this->children.erase(it);
+			return removed;
+		}else{
+			++it;
+		}
+	}
+	return nullptr;
 EventComponent* EventGroup::remove(EventComponent* child) {
 	if(child == nullptr)return nullptr;
 
@@ -57,7 +84,17 @@ void EventGroup::reportStatus() const {
 	std::cout << "\n=== Group Status: " << this->name 
               << " | State: " << (this->isOpen ? "OPEN" : "CLOSED") 
               << " | Total Capacity: " << this->getCapacity() << " ===" << std::endl;
+void EventGroup::reportStatus() const {
+	std::cout << "\n=== Group Status: " << this->name 
+              << " | State: " << (this->isOpen ? "OPEN" : "CLOSED") 
+              << " | Total Capacity: " << this->getCapacity() << " ===" << std::endl;
 
+    for (size_t i = 0; i < this->children.size(); ++i) {
+        if (this->children[i] != nullptr) {
+            this->children[i]->reportStatus();
+        }
+    }
+}
     for (size_t i = 0; i < this->children.size(); ++i) {
         if (this->children[i] != nullptr) {
             this->children[i]->reportStatus();
