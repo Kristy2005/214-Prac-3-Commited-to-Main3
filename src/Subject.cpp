@@ -39,5 +39,5 @@ void Subject::detach(Observer* observer) {
 
 Subject::~Subject() {
 	// TODO - implement Subject::~Subject
-
+	this->observers.clear();
 }
