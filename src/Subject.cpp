@@ -1,16 +1,45 @@
 #include "Subject.h"
 
 void Subject::attach(Observer* observer) {
-	// TODO - implement Subject::attach
-	throw "Not yet implemented";
+	//DO NOT ACCEPT NULLPTR 
+	if(observer == nullptr)return;
+
+	//DUPLICATE CHECK 
+	bool dup = false;
+	auto it = this->observers.begin();
+	while(it != this->observers.end()){
+		if(*it == observer){
+			dup = true;
+			break;
+		}else{
+			++it;
+		}
+	}
+
+	if(!dup){
+		this->observers.push_back(observer);
+	}
+	
 }
 
 void Subject::detach(Observer* observer) {
-	// TODO - implement Subject::detach
-	throw "Not yet implemented";
+	//NULL CHECK 
+	if(observer == nullptr)return;
+
+	auto it = this->observers.begin();
+	while(it != this->observers.end()){
+		if(*it == observer){
+			this->observers.erase(it);
+			break;
+		}else{
+			++it;
+		}
+	}
 }
 
 Subject::~Subject() {
-	// TODO - implement Subject::~Subject
-	throw "Not yet implemented";
+	for(Observer* er: this->observers){
+		this->detach(er);
+	}
+	this->observers.clear();
 }
