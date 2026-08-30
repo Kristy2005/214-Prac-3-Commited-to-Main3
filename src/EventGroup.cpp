@@ -36,7 +36,7 @@ EventComponent* EventGroup::remove(EventComponent* child) {
 void EventGroup::open() {
 	this->isOpen = true;
 	std::cout<< "[Evenet Group] ZONE:" << this->name << "is now OPEN" <<std::endl;
-	for(size_t i = 0; i < this->childrensize(); ++i){
+	for(size_t i = 0; i < this->children.size(); ++i){
 		if(this->children[i] != nullptr){
 			this->children[i]->open();
 		}
@@ -46,7 +46,7 @@ void EventGroup::open() {
 void EventGroup::close() {
 	this->isOpen = false;
 	std::cout<< "[Evenet Group] ZONE:" << this->name << "is now CLOSED" <<std::endl;
-	for(size_t i = 0; i < this->childrensize(); ++i){
+	for(size_t i = 0; i < this->children.size(); ++i){
 		if(this->children[i] != nullptr){
 			this->children[i]->close();
 		}
@@ -69,7 +69,7 @@ int EventGroup::getCapacity() const {
 	int capacity = 0;
 	auto it = this->children.begin();
 	while(it != this->children.end()){
-		if(it != nullptr)capacity += *it->getCapacity();
+		if(*it != nullptr) capacity += (*it)->getCapacity();
 		++it;
 	}
 	return capacity;

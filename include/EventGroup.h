@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 #include "EventComponent.h"
 #include "Observer.h"
 #include "Subject.h"

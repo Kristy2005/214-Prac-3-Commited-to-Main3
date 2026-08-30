@@ -7,6 +7,7 @@
 #define EVENTUNIT_H
 
 #include <string>
+#include <iostream>
 #include "EventComponent.h"
 #include "Observer.h"
 
