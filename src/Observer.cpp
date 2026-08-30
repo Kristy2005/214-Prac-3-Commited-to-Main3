@@ -1,6 +1,5 @@
 #include "Observer.h"
 
 Observer::~Observer() {
-	// TODO - implement Observer::~Observer
-
+	//NO MEMORY TO DEALLOCATE 
 }

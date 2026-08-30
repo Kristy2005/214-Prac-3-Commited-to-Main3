@@ -37,7 +37,15 @@ void Subject::detach(Observer* observer) {
 	}
 }
 
+<<<<<<< HEAD
 Subject::~Subject() {
 	// TODO - implement Subject::~Subject
 
 }
+=======
+
+Subject::~Subject(){
+	//DO NOT DETACH EACH AND EVERY SINGLE OBSERVER 
+	this->observers.clear();
+}
+>>>>>>> 97d9d62 (Current concrete implementations of Observer)

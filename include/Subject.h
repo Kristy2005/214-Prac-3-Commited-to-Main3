@@ -32,7 +32,7 @@ public:
     /**
      * @brief Virtual destructor to ensure polymorphic cleanup.
      */
-    virtual ~Subject() = default;
+    virtual ~Subject();
 
     /**
      * @brief Registers an existing observer for updates.
@@ -52,7 +52,7 @@ public:
      * @brief Broadcasts a notice to all currently registered observers.
      * @param notice Push-notification data payload passed to observers.
      */
-    virtual void notify(const Notice& notice);
+    virtual void notify(const Notice& notice) = 0;
 };
 
 #endif
