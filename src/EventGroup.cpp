@@ -36,7 +36,11 @@ EventComponent* EventGroup::remove(EventComponent* child) {
 void EventGroup::open() {
 	this->isOpen = true;
 	std::cout<< "[Evenet Group] ZONE:" << this->name << "is now OPEN" <<std::endl;
+<<<<<<< HEAD
 	for(size_t i = 0; i < this->children.size(); ++i){
+=======
+	for(size_t i = 0; i < this->childrensize(); ++i){
+>>>>>>> 97d9d62 (Current concrete implementations of Observer)
 		if(this->children[i] != nullptr){
 			this->children[i]->open();
 		}
@@ -46,7 +50,11 @@ void EventGroup::open() {
 void EventGroup::close() {
 	this->isOpen = false;
 	std::cout<< "[Evenet Group] ZONE:" << this->name << "is now CLOSED" <<std::endl;
+<<<<<<< HEAD
 	for(size_t i = 0; i < this->children.size(); ++i){
+=======
+	for(size_t i = 0; i < this->childrensize(); ++i){
+>>>>>>> 97d9d62 (Current concrete implementations of Observer)
 		if(this->children[i] != nullptr){
 			this->children[i]->close();
 		}
@@ -69,7 +77,11 @@ int EventGroup::getCapacity() const {
 	int capacity = 0;
 	auto it = this->children.begin();
 	while(it != this->children.end()){
+<<<<<<< HEAD
 		if(*it != nullptr) capacity += (*it)->getCapacity();
+=======
+		if(it != nullptr)capacity += *it->getCapacity();
+>>>>>>> 97d9d62 (Current concrete implementations of Observer)
 		++it;
 	}
 	return capacity;
