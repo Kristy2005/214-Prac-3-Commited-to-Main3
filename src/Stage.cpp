@@ -1,19 +1,63 @@
 #include "Stage.h"
+#include "Notice.h"
+#include <iostream>
 
-void Stage::update(const Notice& notice) {
-	// TODO - implement Stage::update
-	throw "Not yet implemented";
-}
+Stage::Stage(std::string name, int capacity, bool outdoor, std::string genre, bool nearWater)
+    : EventUnit(name, capacity), outdoor(outdoor), performancePaused(false), genre(genre), nearWater(nearWater) {}
 
 void Stage::pausePerformance() {
-	// TODO - implement Stage::pausePerformance
-	throw "Not yet implemented";
+    this->performancePaused = true;
+    std::cout << "[Stage: " << this->name << "] Performance has been PAUSED." << std::endl;
 }
 
 void Stage::resumePerformance() {
-	// TODO - implement Stage::resumePerformance
-	throw "Not yet implemented";
+    this->performancePaused = false;
+    std::cout << "[Stage: " << this->name << "] Performance has RESUMED." << std::endl;
 }
 
-Stage::Stage(std::string name, int capacity, bool outdoor,std::string genre, bool nearWater)
-    : EventUnit(name, capacity),outdoor(outdoor),performancePaused(false),genre(genre), nearWater(nearWater){}
+void Stage::update(const Notice& notice) {
+    std::cout << "[Stage: " << this->name << " (" << this->genre << ")] Received Notice: " 
+              << notice.getMessage() << std::endl;
+
+    NoticeType type = notice.getType();
+    
+    switch (type) {
+        case NoticeType::OPEN:
+            this->open();
+            break;
+        case NoticeType::CLOSE:
+            this->close();
+            break;
+        case NoticeType::PAUSE:
+            this->pausePerformance();
+            break;
+        case NoticeType::RESUME:
+            this->resumePerformance();
+            break;
+        case NoticeType::EVACUATE:
+            this->pausePerformance();
+            this->close();
+            std::cout << "[Stage: " << this->name << "] EVACUATING AREA IMMEDIATELY!" << std::endl;
+            break;
+        case NoticeType::WEATHER_ALERT:
+            if (this->outdoor) {
+                std::cout << "[Stage: " << this->name << "] Outdoor stage safety protocol triggered by severe weather!" << std::endl;
+                this->pausePerformance();
+            }
+            break;
+        case NoticeType::CAPACITY_ALERT:
+            std::cout << "[Stage: " << this->name << "] Capacity warning acknowledged for " << this->genre << " crowd." << std::endl;
+            break;
+        case NoticeType::SCHEDULE_CHANGE:
+            std::cout << "[Stage: " << this->name << "] Lineup schedule updated." << std::endl;
+            break;
+        default:
+            break;
+    }
+}
+
+Stage::~Stage() {
+    // Stage leaf destructor.
+    // Base class EventUnit/EventComponent destructors execute automatically.
+    // Primitive attributes and std::string clean up automatically.
+}
