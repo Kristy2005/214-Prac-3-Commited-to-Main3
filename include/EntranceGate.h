@@ -42,7 +42,7 @@ public:
      * @param age Age of the attendee requesting entry.
      * @return True if attendee meets or exceeds minimum age, false otherwise.
      */
-    bool checkID(int age);
+    bool checkID(int age)const;
 
     /**
      * @brief Processes an attendee entry attempt based on gate state and age criteria.

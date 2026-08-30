@@ -1,4 +1,5 @@
 #include "EntranceGate.h"
+#include "Notice.h"
 #include <iostream>
 
 //const because just doing comparisons no modifications
