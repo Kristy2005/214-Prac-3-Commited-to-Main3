@@ -1,6 +1,8 @@
 #include "EventComponent.h"
 
-EventComponent::~EventComponent(){}//nothing to delete
+EventComponent::~EventComponent() {
+	//NO MEMORY TO DEALLOCATE 
+}
 
 std::string EventComponent::getName() const {
 	return this->name;

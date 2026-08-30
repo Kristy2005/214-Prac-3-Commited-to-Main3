@@ -37,7 +37,8 @@ void Subject::detach(Observer* observer) {
 	}
 }
 
-Subject::~Subject() {
-	// TODO - implement Subject::~Subject
 
+Subject::~Subject(){
+	//DO NOT DETACH EACH AND EVERY SINGLE OBSERVER 
+	this->observers.clear();
 }
