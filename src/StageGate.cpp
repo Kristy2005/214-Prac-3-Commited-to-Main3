@@ -114,3 +114,5 @@ void StageGate::update(const Notice& notice){
 //constructor
 StageGate::StageGate(std::string name, Stage* stage)
     : EventUnit(name, 0),currentOccupancy(0), admitting(true),controlledStage(stage){}
+
+StageGate::~StageGate(){}

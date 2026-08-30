@@ -26,16 +26,13 @@ private:
     int peopleRemoved;
 
 public:
+    virtual ~SecurityTeam();
     /**
      * @brief Constructs a SecurityTeam instance.
      * @param name Identifier or unit designation for the team.
      */
     explicit SecurityTeam(std::string name);
 
-    /**
-     * @brief Virtual destructor for SecurityTeam.
-     */
-    virtual ~SecurityTeam() override;
 
     /**
      * @brief Deploys security personnel to high-priority active areas.

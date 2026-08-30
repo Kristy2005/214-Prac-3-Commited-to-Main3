@@ -18,3 +18,8 @@ int Notice::getValue() const {
 
 Notice::Notice(NoticeType type, std::string message, std::string target, int value)
     : type(type), message(message), target(target), value(value){}
+
+
+Notice::~Notice(){
+	
+}

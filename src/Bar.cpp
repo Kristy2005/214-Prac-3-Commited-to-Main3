@@ -1,4 +1,5 @@
 #include "Bar.h"
+#include "Notice.h"
 #include <iostream>
 
 bool Bar::serveDrink(){
@@ -64,7 +65,7 @@ void Bar::update(const Notice& notice){
 
 //constructor
 Bar::Bar(std::string name, int drinkStock)
-    : EventUnit(name, 0),serving(true),busy(false),lastCall(false),drinkStock(drinkStock){}
+    : EventUnit(name, 0),serving(true),lastCall(false),drinkStock(drinkStock),busy(false){}
 
 void Bar::startLastCall(){
 
@@ -90,3 +91,5 @@ void Bar::restockDrinks(int amount){
         std::cout << "Invalid restock amount" << std::endl;
     }
 }
+
+Bar::~Bar() {}

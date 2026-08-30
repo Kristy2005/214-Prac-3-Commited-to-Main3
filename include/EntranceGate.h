@@ -32,10 +32,6 @@ public:
      */
     EntranceGate(std::string name, int minimumAge = 18);
 
-    /**
-     * @brief Virtual destructor for EntranceGate.
-     */
-    virtual ~EntranceGate() override;
 
     /**
      * @brief Verifies whether an attendee satisfies age requirements.
@@ -56,6 +52,8 @@ public:
      * @param notice Reference to the Notice payload.
      */
     void update(const Notice& notice) override;
+
+    ~EntranceGate();
 };
 
 #endif

@@ -83,3 +83,4 @@ void SecurityTeam::update(const Notice& notice){
         std::cout << getName()<< " assists with clearing the event area"<< std::endl;
     }
 }
+SecurityTeam::~SecurityTeam() {}

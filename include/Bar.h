@@ -27,6 +27,7 @@ private:
     bool busy;
 
 public:
+    virtual ~Bar();
     /**
      * @brief Constructs a Bar instance with initial inventory stock.
      * @param name Descriptive identifier for the bar unit.
@@ -34,10 +35,6 @@ public:
      */
     Bar(std::string name, int drinkStock);
 
-    /**
-     * @brief Virtual destructor for Bar.
-     */
-    virtual ~Bar() override;
 
     /**
      * @brief Serves a beverage to a customer if stock is available and serving is enabled.

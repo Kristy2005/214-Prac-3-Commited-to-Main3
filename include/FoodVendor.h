@@ -26,6 +26,7 @@ private:
     bool busy;
 
 public:
+    virtual ~FoodVendor();
     /**
      * @brief Constructs a FoodVendor instance.
      * @param name Name of the food stall or truck.
@@ -33,11 +34,7 @@ public:
      */
     FoodVendor(std::string name, int stockLevel);
 
-    /**
-     * @brief Virtual destructor for FoodVendor.
-     */
-    virtual ~FoodVendor() override;
-
+   
     /**
      * @brief Serves a food order if vendor is active and stock is available.
      * @return True if order was filled, false if out of stock or closed.

@@ -60,3 +60,5 @@ void EntranceGate::update(const Notice& notice){
 
 EntranceGate::EntranceGate(std::string name, int minimumAge)
     : EventUnit(name, 0),minimumAge(minimumAge),admitting(true){}
+
+EntranceGate::~EntranceGate(){}

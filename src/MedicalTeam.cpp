@@ -98,3 +98,4 @@ void MedicalTeam::update(const Notice& notice){
 //constructor
 MedicalTeam::MedicalTeam(std::string name, int maxPatients, int medicalSupplies)
     : EventUnit(name, 0),available(true),currentPatients(0), maxPatients(maxPatients),medicalSupplies(medicalSupplies){}
+MedicalTeam::~MedicalTeam() {}

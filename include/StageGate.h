@@ -27,18 +27,13 @@ private:
     Stage* controlledStage;
 
 public:
+    virtual ~StageGate();
     /**
      * @brief Constructs a StageGate associated with a specific Stage.
      * @param name Identifier for the access gate.
      * @param stage Non-owning raw pointer to the Stage being controlled. Must not be nullptr[cite: 1].
      */
     StageGate(std::string name, Stage* stage);
-
-    /**
-     * @brief Virtual destructor for StageGate.
-     * @details Does NOT delete `controlledStage` as it is a non-owning reference[cite: 1].
-     */
-    virtual ~StageGate() override;
 
     /**
      * @brief Checks if the gate is accepting admissions based on current occupancy and state.

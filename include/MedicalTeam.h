@@ -27,6 +27,7 @@ private:
     int medicalSupplies;
 
 public:
+    virtual ~MedicalTeam();
     /**
      * @brief Constructs a MedicalTeam instance with capacity and supply constraints.
      * @param name Name or unit code for the first aid post.
@@ -35,11 +36,7 @@ public:
      */
     MedicalTeam(std::string name, int maxPatients, int medicalSupplies);
 
-    /**
-     * @brief Virtual destructor for MedicalTeam.
-     */
-    virtual ~MedicalTeam() override;
-
+    
     /**
      * @brief Admits and treats a patient, consuming medical supplies based on severity.
      * @param severity Numeric severity rating indicating supply consumption.

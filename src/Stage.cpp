@@ -56,8 +56,3 @@ void Stage::update(const Notice& notice) {
     }
 }
 
-Stage::~Stage() {
-    // Stage leaf destructor.
-    // Base class EventUnit/EventComponent destructors execute automatically.
-    // Primitive attributes and std::string clean up automatically.
-}
