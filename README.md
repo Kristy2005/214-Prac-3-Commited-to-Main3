@@ -79,21 +79,41 @@ make clean
 
 ## Doxygen Documentation
 
-Doxygen is used to generate documentation for the public classes and operations.
+Doxygen is used to generate documentation for the public classes and operations in the project.
 
-Make sure Doxygen is installed, then run:
+To generate the Doxygen documentation, run:
+
+```bash
+make doc
+```
+
+The `make doc` command runs:
 
 ```bash
 doxygen Doxyfile
 ```
 
-After generation, open the generated HTML documentation from the output directory configured in the `Doxyfile`.
-
-If the default HTML output directory is being used, open:
+The generated HTML documentation is stored in:
 
 ```text
-html/index.html
+docs/html/
 ```
+
+The main documentation page can be found at:
+
+```text
+docs/html/index.html
+```
+
+Open `docs/html/index.html` in a web browser to view the generated documentation.
+
+To remove all generated build files and Doxygen documentation, run:
+
+```bash
+make clean
+```
+
+The `make clean` command removes the generated object files, executable and generated Doxygen documentation.
 
 ## GitHub Workflow
 
