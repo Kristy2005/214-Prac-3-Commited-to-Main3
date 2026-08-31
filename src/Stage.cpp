@@ -56,3 +56,4 @@ void Stage::update(const Notice& notice) {
     }
 }
 
+Stage::~Stage(){}

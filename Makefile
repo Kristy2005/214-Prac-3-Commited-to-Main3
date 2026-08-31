@@ -80,10 +80,21 @@ coverage: $(COV_TARGET)
 coverage-html: coverage
 
 # ──────────────────────────────────────────
+# Generate Doxygen Documentation
+#   make doc
+# ──────────────────────────────────────────
+doc:
+	doxygen Doxyfile
+	@echo "----------------------------------------------------"
+	@echo "Documentation generated: open docs/html/index.html"
+	@echo "----------------------------------------------------"
+
+# ──────────────────────────────────────────
 # Clean
 # ──────────────────────────────────────────
 clean:
 	rm -f $(OBJS) $(TARGET)
 	rm -rf $(COV_DIR)
+	rm -rf docs/html docs/latex
 
-.PHONY: all run valgrind coverage coverage-html clean
+.PHONY: all run valgrind coverage coverage-html doc clean
