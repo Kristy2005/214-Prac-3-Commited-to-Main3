@@ -192,7 +192,7 @@ int main()
     Notice weatherNotice(NoticeType::WEATHER_ALERT, "Heavy rain and river flood warning", "ALL", 5);
     eventControl->issueNotice(weatherNotice);
 
-    cout << CYAN << "\n  [Dispatch 2] CAPACITY_ALERT Notice (Targeted)" << RESET << endl;
+    cout << CYAN << "\n  [Dispatch 2] CAPACITY_ALERT Notice" << RESET << endl;
     Notice capacityNotice(NoticeType::CAPACITY_ALERT, "River Stage at maximum capacity", "River Stage Gate", 200);
     eventControl->issueNotice(capacityNotice);
 
@@ -204,52 +204,89 @@ int main()
     Notice evacuateNotice(NoticeType::EVACUATE, "Emergency evacuation ordered", "ALL", 999);
     eventControl->issueNotice(evacuateNotice);
 
+    cout << CYAN << "\n  [Dispatch 6] PAUSE Notice" << RESET << endl;
+    Notice pauseNotice(NoticeType::PAUSE,"Festival operations temporarily paused","ALL",0);
+    eventControl->issueNotice(pauseNotice);
+
     cout << CYAN << "\n  [Dispatch 5] RESUME Notice" << RESET << endl;
     Notice resumeNotice(NoticeType::RESUME, "Clear to resume operations", "ALL", 0);
     eventControl->issueNotice(resumeNotice);
 
     // ------------------------------------------------------------
-    // Step 6: Testing Dynamic Component Reorganization
+    // Task 4.4: Testing Original Festival Features
     // ------------------------------------------------------------
-    cout << BLUE << "\n------------------------------------------" << RESET << endl;
-    cout << MAGENTA << ">>> Step 6: Testing Dynamic Component Transfer Between Groups" << RESET << endl;
-    cout << BLUE << "------------------------------------------" << RESET << endl;
 
-    cout << CYAN << "  Transferring 'River Security Team' from 'River Stage Area' to 'Food and Service Area'..." << RESET << endl;
+    cout << "\nTesting original festival features" << endl;
 
-    // 1. Detach from old observer subject
-    riverStageArea->detach(riverSecurity);
 
-    // 2. Remove from old composite container (without deleting memory)
-    riverStageArea->remove(riverSecurity);
+    // Test 1: 18+ entrance control
+    cout << "\nTesting entrance age restriction:" << endl;
 
-    // 3. Add to new composite container
-    serviceArea->add(riverSecurity);
+    mainEntrance->admitAttendee(17);
+    mainEntrance->admitAttendee(21);
 
-    // 4. Attach to new observer subject
-    serviceArea->attach(riverSecurity);
 
-    cout << GREEN << "  [OK] Transfer complete" << RESET << endl;
-    cout << CYAN << "  Reporting status of updated Food and Service Area:" << RESET << endl;
+    // Test 2: Bar stock system
+    cout << "\nTesting bar stock system:" << endl;
+
+    riverBar->serveDrink();
+    riverBar->restockDrinks(20);
+
+
+    // Test 3: Medical triage system
+    cout << "\nTesting medical team:" << endl;
+
+    riverMedical->treatPatient(3);
+    riverMedical->dischargePatient();
+
+
+    // Test 4: Security removal and occupancy
+    cout << "\nTesting security removal:" << endl;
+
+    riverGate->admitAttendee();
+
+    riverSecurity->deploy();
+
+    riverSecurity->removePerson("Fighting", riverGate);
+
+
+    // ------------------------------------------------------------
+    // Task 4.2: Testing Dynamic Component Reorganisation
+    // ------------------------------------------------------------
+
+    cout << "\nTransferring River Security Team..." << endl;
+
+    EventComponent* movedSecurity =
+        riverStageArea->remove(riverSecurity);
+
+    if (movedSecurity != nullptr){
+        riverStageArea->detach(riverSecurity);
+
+        serviceArea->add(movedSecurity);
+        serviceArea->attach(riverSecurity);
+
+        cout << "Security Team transferred successfully" << endl;
+    }else{
+        cout << "Security Team transfer failed" << endl;
+    }
+
     serviceArea->reportStatus();
 
-    // ------------------------------------------------------------
-    // Step 7: Clean Shutdown & Memory Deallocation
-    // ------------------------------------------------------------
-    cout << BLUE << "\n------------------------------------------" << RESET << endl;
-    cout << MAGENTA << ">>> Step 7: Executing Clean Shutdown & Memory Verification" << RESET << endl;
-    cout << BLUE << "------------------------------------------" << RESET << endl;
 
-    // Delete central control subject (holds non-owning observer pointers)
+    // ------------------------------------------------------------
+    // Step 7: Clean Shutdown
+    // ------------------------------------------------------------
+
+    cout << "\nClosing festival:" << endl;
+    festivalGrounds->close();
+
     delete eventControl;
     eventControl = nullptr;
-    cout << GREEN << "  [OK] EventControl deleted" << RESET << endl;
 
-    // Delete root composite tree (recursively deletes all owned children)
     delete festivalGrounds;
     festivalGrounds = nullptr;
-    cout << GREEN << "  [OK] festivalGrounds deleted (All nested nodes deallocated cleanly)" << RESET << endl;
 
-    cout << YELLOW << "\n====== Engine shutdown complete ======\n\n" << RESET;
+    cout << "\nEngine shutdown complete" << endl;
+
     return 0;
 }
