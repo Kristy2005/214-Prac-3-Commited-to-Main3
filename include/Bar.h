@@ -59,5 +59,4 @@ public:
      */
     void update(const Notice& notice) override;
 };
-
 #endif
