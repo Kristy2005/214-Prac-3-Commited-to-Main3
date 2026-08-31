@@ -416,6 +416,9 @@ int main()
     delete festivalGrounds;
     festivalGrounds = nullptr;
 
+    delete overflowZone;
+    overflowZone = nullptr;
+
     cout << GREEN << "Engine shutdown complete. Memory deallocated cleanly.\n" << RESET << endl;
 
     return 0;
