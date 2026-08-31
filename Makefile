@@ -1,5 +1,5 @@
 CXX      = g++
-CXXFLAGS = -std=c++11 -Wall -Wextra -Iinclude -Isrc
+CXXFLAGS = -std=c++11 -Wall -Wextra -I.
 COVFLAGS = $(CXXFLAGS) --coverage -fprofile-arcs -ftest-coverage -O0
 
 TARGET     = eventflow
@@ -7,20 +7,20 @@ COV_DIR    = coverage
 COV_TARGET = $(COV_DIR)/eventflow_cov
 
 SRCS = main.cpp \
-       src/Subject.cpp \
-       src/Observer.cpp \
-       src/EventComponent.cpp \
-       src/EventUnit.cpp \
-       src/EventGroup.cpp \
-       src/EventControl.cpp \
-       src/Notice.cpp \
-       src/Stage.cpp \
-       src/EntranceGate.cpp \
-       src/StageGate.cpp \
-       src/Bar.cpp \
-       src/FoodVendor.cpp \
-       src/SecurityTeam.cpp \
-       src/MedicalTeam.cpp
+       Subject.cpp \
+       Observer.cpp \
+       EventComponent.cpp \
+       EventUnit.cpp \
+       EventGroup.cpp \
+       EventControl.cpp \
+       Notice.cpp \
+       Stage.cpp \
+       EntranceGate.cpp \
+       StageGate.cpp \
+       Bar.cpp \
+       FoodVendor.cpp \
+       SecurityTeam.cpp \
+       MedicalTeam.cpp
 
 OBJS     = $(SRCS:.cpp=.o)
 COV_OBJS = $(addprefix $(COV_DIR)/,$(SRCS:.cpp=.o))
@@ -59,10 +59,10 @@ valgrind: $(TARGET)
 # Coverage build + HTML Report
 #   make coverage
 # ──────────────────────────────────────────
-$(COV_DIR)/src:
-	mkdir -p $(COV_DIR)/src
+$(COV_DIR):
+	mkdir -p $(COV_DIR)
 
-$(COV_DIR)/%.o: %.cpp | $(COV_DIR)/src
+$(COV_DIR)/%.o: %.cpp | $(COV_DIR)
 	$(CXX) $(COVFLAGS) -c $< -o $@
 
 $(COV_TARGET): $(COV_OBJS)
@@ -93,7 +93,7 @@ doc:
 # Clean
 # ──────────────────────────────────────────
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f *.o $(TARGET)
 	rm -rf $(COV_DIR)
 	rm -rf docs/html docs/latex
 
