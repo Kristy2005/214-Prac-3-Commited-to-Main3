@@ -6,7 +6,7 @@ TARGET     = eventflow
 COV_DIR    = coverage
 COV_TARGET = $(COV_DIR)/eventflow_cov
 
-SRCS = src/main.cpp \
+SRCS = main.cpp \
        src/Subject.cpp \
        src/Observer.cpp \
        src/EventComponent.cpp \
