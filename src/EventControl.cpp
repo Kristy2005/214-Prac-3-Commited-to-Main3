@@ -1,14 +1,18 @@
 #include "EventControl.h"
+#include "Observer.h"
 
 void EventControl::issueNotice(const Notice& notice) {
-	// TODO - implement EventControl::issueNotice
-	throw "Not yet implemented";
+	this->notify(notice);
 }
 
 void EventControl::notify(const Notice& notice) {
-	// TODO - implement EventControl::notify
-	throw "Not yet implemented";
+	for(Observer* er: this->observers){
+		if(er != nullptr){
+			er->update(notice);
+		}
+	}
 }
 
 EventControl::EventControl(std::string eventName)
     : eventName(eventName){}
+EventControl::~EventControl() {}

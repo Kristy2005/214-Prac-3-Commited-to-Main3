@@ -1,4 +1,5 @@
 #include "EntranceGate.h"
+#include "Notice.h"
 #include <iostream>
 
 //const because just doing comparisons no modifications
@@ -59,3 +60,5 @@ void EntranceGate::update(const Notice& notice){
 
 EntranceGate::EntranceGate(std::string name, int minimumAge)
     : EventUnit(name, 0),minimumAge(minimumAge),admitting(true){}
+
+EntranceGate::~EntranceGate(){}

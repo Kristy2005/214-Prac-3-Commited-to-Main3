@@ -1,4 +1,5 @@
 #include "FoodVendor.h"
+#include "Notice.h"
 #include <iostream>
 
 bool FoodVendor::serveFood(){
@@ -81,4 +82,5 @@ void FoodVendor::update(const Notice& notice){
 
 //constructor
 FoodVendor::FoodVendor(std::string name, int stockLevel)
-    : EventUnit(name, 0),serving(true),busy(false),stockLevel(stockLevel){}
+    : EventUnit(name, 0),serving(true),stockLevel(stockLevel),busy(false){}
+FoodVendor::~FoodVendor() {}

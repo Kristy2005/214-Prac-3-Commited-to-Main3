@@ -1,74 +1,97 @@
-eventflow: main.o Subject.o Observer.o EventComponent.o EventUnit.o EventGroup.o EventControl.o Notice.o Stage.o EntranceGate.o StageGate.o Bar.o FoodVendor.o SecurityTeam.o MedicalTeam.o
-	g++ main.o Subject.o Observer.o EventComponent.o EventUnit.o EventGroup.o EventControl.o Notice.o Stage.o EntranceGate.o StageGate.o Bar.o FoodVendor.o SecurityTeam.o MedicalTeam.o -o eventflow
+CXX      = g++
+CXXFLAGS = -std=c++11 -Wall -Wextra -Iinclude -Isrc
 
+COVFLAGS = -std=c++11 -Wall -Wextra -Iinclude -Isrc --coverage -fprofile-arcs -ftest-coverage -O0
 
-main.o: main.cpp
-	g++ main.cpp -c
+TARGET     = eventflow
+COV_TARGET = eventflow_cov
 
+SRCS = src/main.cpp \
+       src/Subject.cpp \
+       src/Observer.cpp \
+       src/EventComponent.cpp \
+       src/EventUnit.cpp \
+       src/EventGroup.cpp \
+       src/EventControl.cpp \
+       src/Notice.cpp \
+       src/Stage.cpp \
+       src/EntranceGate.cpp \
+       src/StageGate.cpp \
+       src/Bar.cpp \
+       src/FoodVendor.cpp \
+       src/SecurityTeam.cpp \
+       src/MedicalTeam.cpp
 
-Subject.o: Subject.cpp Subject.h
-	g++ Subject.cpp -c
+OBJS     = $(SRCS:.cpp=.o)
+COV_DIR  = cov_build
+COV_OBJS = $(addprefix $(COV_DIR)/,$(SRCS:.cpp=.o))
 
+# ──────────────────────────────────────────
+# Default build
+# ──────────────────────────────────────────
+all: $(TARGET)
 
-Observer.o: Observer.cpp Observer.h
-	g++ Observer.cpp -c
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-EventComponent.o: EventComponent.cpp EventComponent.h
-	g++ EventComponent.cpp -c
+# ──────────────────────────────────────────
+# Run the engine
+#   make run
+# ──────────────────────────────────────────
+run: $(TARGET)
+	./$(TARGET)
 
+# ──────────────────────────────────────────
+# Valgrind — full memory-leak check
+#   make valgrind
+# ──────────────────────────────────────────
+valgrind: $(TARGET)
+	valgrind \
+		--leak-check=full \
+		--show-leak-kinds=all \
+		--track-origins=yes \
+		--error-exitcode=1 \
+		./$(TARGET)
 
-EventUnit.o: EventUnit.cpp EventUnit.h
-	g++ EventUnit.cpp -c
+# ──────────────────────────────────────────
+# Coverage build + terminal summary
+#   make coverage
+# ──────────────────────────────────────────
+$(COV_DIR):
+	mkdir -p $(COV_DIR)/src
 
+$(COV_DIR)/%.o: %.cpp | $(COV_DIR)
+	$(CXX) $(COVFLAGS) -c $< -o $@
 
-EventGroup.o: EventGroup.cpp EventGroup.h
-	g++ EventGroup.cpp -c
+$(COV_TARGET): $(COV_OBJS)
+	$(CXX) $(COVFLAGS) -o $(COV_TARGET) $(COV_OBJS)
 
+coverage: $(COV_TARGET)
+	./$(COV_TARGET)
+	gcov --object-directory $(COV_DIR)/src $(SRCS)
 
-EventControl.o: EventControl.cpp EventControl.h
-	g++ EventControl.cpp -c
+# ──────────────────────────────────────────
+# Coverage HTML report (requires lcov)
+#   make coverage-html
+# ──────────────────────────────────────────
+coverage-html: $(COV_TARGET)
+	./$(COV_TARGET)
+	lcov --capture --directory $(COV_DIR) --output-file coverage.info \
+		--rc lcov_branch_coverage=1
+	lcov --remove coverage.info '/usr/*' --output-file coverage.info
+	genhtml coverage.info --output-directory coverage --branch-coverage
+	@echo "Report ready: open coverage/index.html"
 
-
-Notice.o: Notice.cpp Notice.h
-	g++ Notice.cpp -c
-
-
-Stage.o: Stage.cpp Stage.h
-	g++ Stage.cpp -c
-
-
-EntranceGate.o: EntranceGate.cpp EntranceGate.h
-	g++ EntranceGate.cpp -c
-
-
-StageGate.o: StageGate.cpp StageGate.h
-	g++ StageGate.cpp -c
-
-
-Bar.o: Bar.cpp Bar.h
-	g++ Bar.cpp -c
-
-
-FoodVendor.o: FoodVendor.cpp FoodVendor.h
-	g++ FoodVendor.cpp -c
-
-
-SecurityTeam.o: SecurityTeam.cpp SecurityTeam.h
-	g++ SecurityTeam.cpp -c
-
-
-MedicalTeam.o: MedicalTeam.cpp MedicalTeam.h
-	g++ MedicalTeam.cpp -c
-
-
-run: eventflow
-	./eventflow
-
-
-valgrind: eventflow
-	valgrind --leak-check=full ./eventflow
-
-
+# ──────────────────────────────────────────
+# Clean
+# ──────────────────────────────────────────
 clean:
-	rm -f *.o eventflow
+	rm -f $(OBJS) $(TARGET) $(COV_TARGET)
+	rm -rf $(COV_DIR)
+	rm -f *.gcov coverage.info
+	rm -rf coverage/
+
+.PHONY: all run valgrind coverage coverage-html clean

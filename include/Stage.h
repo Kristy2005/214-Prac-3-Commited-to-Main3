@@ -38,10 +38,6 @@ public:
      */
     Stage(std::string name, int capacity, bool outdoor, std::string genre, bool nearWater);
 
-    /**
-     * @brief Virtual destructor for Stage.
-     */
-    virtual ~Stage() override;
 
     /**
      * @brief Receives event updates pushed from a Subject and executes stage behavior.
