@@ -1,0 +1,157 @@
+\hypertarget{classMedicalTeam}{}\doxysection{Medical\+Team Class Reference}
+\label{classMedicalTeam}\index{MedicalTeam@{MedicalTeam}}
+
+
+Concrete Leaf managing medical triage, supply tracking, and patient admissions.  
+
+
+
+
+{\ttfamily \#include $<$Medical\+Team.\+h$>$}
+
+
+
+Inheritance diagram for Medical\+Team\+:
+% FIG 0
+
+
+Collaboration diagram for Medical\+Team\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classMedicalTeam_aa3cdae3cc88a2ed08d88c721e4a277f2}{$\sim$\+Medical\+Team}} ()
+\item 
+\mbox{\hyperlink{classMedicalTeam_a1de580f45cc0e3f690f554207c079dfa}{Medical\+Team}} (std\+::string \mbox{\hyperlink{classEventComponent_a82348aef118d5b35e0962a4f632cbd19}{name}}, int \mbox{\hyperlink{classMedicalTeam_a11723b9c99dfeac66047df9259fdc480}{max\+Patients}}, int \mbox{\hyperlink{classMedicalTeam_a4221340b23300f225642db6380159a81}{medical\+Supplies}})
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classMedicalTeam}{Medical\+Team}} instance with capacity and supply constraints. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMedicalTeam_a31ec110caefcf738b04a628de22e99a7}{treat\+Patient}} (int severity)
+\begin{DoxyCompactList}\small\item\em Admits and treats a patient, consuming medical supplies based on severity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMedicalTeam_ac855acacd14e5d15744d3dc36b3932a7}{discharge\+Patient}} ()
+\begin{DoxyCompactList}\small\item\em Discharges a treated patient, freeing up medical station capacity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMedicalTeam_a6d4c8a98c8dd48c54a71464d16bedf07}{update}} (const \mbox{\hyperlink{classNotice}{Notice}} \&notice) override
+\begin{DoxyCompactList}\small\item\em Receives event notices to prepare triage areas during emergencies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classMedicalTeam_a6de6832df2c07738fcaa51d702015e3c}{available}}
+\item 
+int \mbox{\hyperlink{classMedicalTeam_a519291e674f4a84e608c50efb110ff02}{current\+Patients}}
+\item 
+int \mbox{\hyperlink{classMedicalTeam_a11723b9c99dfeac66047df9259fdc480}{max\+Patients}}
+\item 
+int \mbox{\hyperlink{classMedicalTeam_a4221340b23300f225642db6380159a81}{medical\+Supplies}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Concrete Leaf managing medical triage, supply tracking, and patient admissions. 
+
+GoF Role\+: Concrete\+Observer (\mbox{\hyperlink{classObserver}{Observer}} Pattern) / Leaf (Composite Pattern). Remains operational during emergency alerts and evacuations to provide first aid support\mbox{[}cite\+: 1\mbox{]}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMedicalTeam_aa3cdae3cc88a2ed08d88c721e4a277f2}\label{classMedicalTeam_aa3cdae3cc88a2ed08d88c721e4a277f2}} 
+\index{MedicalTeam@{MedicalTeam}!````~MedicalTeam@{$\sim$MedicalTeam}}
+\index{````~MedicalTeam@{$\sim$MedicalTeam}!MedicalTeam@{MedicalTeam}}
+\doxysubsubsection{\texorpdfstring{$\sim$MedicalTeam()}{~MedicalTeam()}}
+{\footnotesize\ttfamily Medical\+Team\+::$\sim$\+Medical\+Team (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classMedicalTeam_a1de580f45cc0e3f690f554207c079dfa}\label{classMedicalTeam_a1de580f45cc0e3f690f554207c079dfa}} 
+\index{MedicalTeam@{MedicalTeam}!MedicalTeam@{MedicalTeam}}
+\index{MedicalTeam@{MedicalTeam}!MedicalTeam@{MedicalTeam}}
+\doxysubsubsection{\texorpdfstring{MedicalTeam()}{MedicalTeam()}}
+{\footnotesize\ttfamily Medical\+Team\+::\+Medical\+Team (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{max\+Patients,  }\item[{int}]{medical\+Supplies }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classMedicalTeam}{Medical\+Team}} instance with capacity and supply constraints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name or unit code for the first aid post. \\
+\hline
+{\em max\+Patients} & Maximum concurrent patients the team can accommodate. \\
+\hline
+{\em medical\+Supplies} & Initial supply units available for triage. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMedicalTeam_ac855acacd14e5d15744d3dc36b3932a7}\label{classMedicalTeam_ac855acacd14e5d15744d3dc36b3932a7}} 
+\index{MedicalTeam@{MedicalTeam}!dischargePatient@{dischargePatient}}
+\index{dischargePatient@{dischargePatient}!MedicalTeam@{MedicalTeam}}
+\doxysubsubsection{\texorpdfstring{dischargePatient()}{dischargePatient()}}
+{\footnotesize\ttfamily void Medical\+Team\+::discharge\+Patient (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Discharges a treated patient, freeing up medical station capacity. 
+
+\mbox{\Hypertarget{classMedicalTeam_a31ec110caefcf738b04a628de22e99a7}\label{classMedicalTeam_a31ec110caefcf738b04a628de22e99a7}} 
+\index{MedicalTeam@{MedicalTeam}!treatPatient@{treatPatient}}
+\index{treatPatient@{treatPatient}!MedicalTeam@{MedicalTeam}}
+\doxysubsubsection{\texorpdfstring{treatPatient()}{treatPatient()}}
+{\footnotesize\ttfamily bool Medical\+Team\+::treat\+Patient (\begin{DoxyParamCaption}\item[{int}]{severity }\end{DoxyParamCaption})}
+
+
+
+Admits and treats a patient, consuming medical supplies based on severity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em severity} & Numeric severity rating indicating supply consumption. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMedicalTeam_a6d4c8a98c8dd48c54a71464d16bedf07}\label{classMedicalTeam_a6d4c8a98c8dd48c54a71464d16bedf07}} 
+\index{MedicalTeam@{MedicalTeam}!update@{update}}
+\index{update@{update}!MedicalTeam@{MedicalTeam}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Medical\+Team\+::update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNotice}{Notice}} \&}]{notice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Receives event notices to prepare triage areas during emergencies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em notice} & Reference to the \mbox{\hyperlink{classNotice}{Notice}} payload. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classEventUnit_adca0361187e0c7f4963aadfb70cb556f}{Event\+Unit}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classMedicalTeam_a6de6832df2c07738fcaa51d702015e3c}\label{classMedicalTeam_a6de6832df2c07738fcaa51d702015e3c}} 
+\index{MedicalTeam@{MedicalTeam}!available@{available}}
+\index{available@{available}!MedicalTeam@{MedicalTeam}}
+\doxysubsubsection{\texorpdfstring{available}{available}}
+{\footnotesize\ttfamily bool Medical\+Team\+::available\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMedicalTeam_a519291e674f4a84e608c50efb110ff02}\label{classMedicalTeam_a519291e674f4a84e608c50efb110ff02}} 
+\index{MedicalTeam@{MedicalTeam}!currentPatients@{currentPatients}}
+\index{currentPatients@{currentPatients}!MedicalTeam@{MedicalTeam}}
+\doxysubsubsection{\texorpdfstring{currentPatients}{currentPatients}}
+{\footnotesize\ttfamily int Medical\+Team\+::current\+Patients\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMedicalTeam_a11723b9c99dfeac66047df9259fdc480}\label{classMedicalTeam_a11723b9c99dfeac66047df9259fdc480}} 
+\index{MedicalTeam@{MedicalTeam}!maxPatients@{maxPatients}}
+\index{maxPatients@{maxPatients}!MedicalTeam@{MedicalTeam}}
+\doxysubsubsection{\texorpdfstring{maxPatients}{maxPatients}}
+{\footnotesize\ttfamily int Medical\+Team\+::max\+Patients\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMedicalTeam_a4221340b23300f225642db6380159a81}\label{classMedicalTeam_a4221340b23300f225642db6380159a81}} 
+\index{MedicalTeam@{MedicalTeam}!medicalSupplies@{medicalSupplies}}
+\index{medicalSupplies@{medicalSupplies}!MedicalTeam@{MedicalTeam}}
+\doxysubsubsection{\texorpdfstring{medicalSupplies}{medicalSupplies}}
+{\footnotesize\ttfamily int Medical\+Team\+::medical\+Supplies\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{MedicalTeam_8h}{Medical\+Team.\+h}}\item 
+src/\mbox{\hyperlink{MedicalTeam_8cpp}{Medical\+Team.\+cpp}}\end{DoxyCompactItemize}

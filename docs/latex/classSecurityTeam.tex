@@ -1,0 +1,142 @@
+\hypertarget{classSecurityTeam}{}\doxysection{Security\+Team Class Reference}
+\label{classSecurityTeam}\index{SecurityTeam@{SecurityTeam}}
+
+
+Concrete Leaf handling crowd control, personnel deployment, and incident response.  
+
+
+
+
+{\ttfamily \#include $<$Security\+Team.\+h$>$}
+
+
+
+Inheritance diagram for Security\+Team\+:
+% FIG 0
+
+
+Collaboration diagram for Security\+Team\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classSecurityTeam_a727d691f370f7ad4103646e2773f252a}{$\sim$\+Security\+Team}} ()
+\item 
+\mbox{\hyperlink{classSecurityTeam_abeee09652a6fd1c8fbd599013a833de8}{Security\+Team}} (std\+::string \mbox{\hyperlink{classEventComponent_a82348aef118d5b35e0962a4f632cbd19}{name}})
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classSecurityTeam}{Security\+Team}} instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSecurityTeam_a0584d45c2ea8edb4f89fa26a7b4e7620}{deploy}} ()
+\begin{DoxyCompactList}\small\item\em Deploys security personnel to high-\/priority active areas. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSecurityTeam_a16194f8fad1abbc03a2c118e153a333c}{remove\+Person}} (std\+::string reason, \mbox{\hyperlink{classStageGate}{Stage\+Gate}} $\ast$gate)
+\begin{DoxyCompactList}\small\item\em Escorts an individual off-\/site and updates gate occupancy metrics. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSecurityTeam_a0e9ba754ae05b6be2086d55f28658dda}{update}} (const \mbox{\hyperlink{classNotice}{Notice}} \&notice) override
+\begin{DoxyCompactList}\small\item\em Responds to safety notifications by deploying personnel and securing zones. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classSecurityTeam_adae142324813f864eba4977ba32dea2b}{deployed}}
+\item 
+int \mbox{\hyperlink{classSecurityTeam_a331ca825431cf04bd3f1fccf72115f63}{people\+Removed}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Concrete Leaf handling crowd control, personnel deployment, and incident response. 
+
+GoF Role\+: Concrete\+Observer (\mbox{\hyperlink{classObserver}{Observer}} Pattern) / Leaf (Composite Pattern). Deploys dynamically upon receiving safety alerts, capacity warnings, or evacuation commands\mbox{[}cite\+: 1\mbox{]}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSecurityTeam_a727d691f370f7ad4103646e2773f252a}\label{classSecurityTeam_a727d691f370f7ad4103646e2773f252a}} 
+\index{SecurityTeam@{SecurityTeam}!````~SecurityTeam@{$\sim$SecurityTeam}}
+\index{````~SecurityTeam@{$\sim$SecurityTeam}!SecurityTeam@{SecurityTeam}}
+\doxysubsubsection{\texorpdfstring{$\sim$SecurityTeam()}{~SecurityTeam()}}
+{\footnotesize\ttfamily Security\+Team\+::$\sim$\+Security\+Team (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classSecurityTeam_abeee09652a6fd1c8fbd599013a833de8}\label{classSecurityTeam_abeee09652a6fd1c8fbd599013a833de8}} 
+\index{SecurityTeam@{SecurityTeam}!SecurityTeam@{SecurityTeam}}
+\index{SecurityTeam@{SecurityTeam}!SecurityTeam@{SecurityTeam}}
+\doxysubsubsection{\texorpdfstring{SecurityTeam()}{SecurityTeam()}}
+{\footnotesize\ttfamily Security\+Team\+::\+Security\+Team (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a \mbox{\hyperlink{classSecurityTeam}{Security\+Team}} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Identifier or unit designation for the team. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSecurityTeam_a0584d45c2ea8edb4f89fa26a7b4e7620}\label{classSecurityTeam_a0584d45c2ea8edb4f89fa26a7b4e7620}} 
+\index{SecurityTeam@{SecurityTeam}!deploy@{deploy}}
+\index{deploy@{deploy}!SecurityTeam@{SecurityTeam}}
+\doxysubsubsection{\texorpdfstring{deploy()}{deploy()}}
+{\footnotesize\ttfamily void Security\+Team\+::deploy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Deploys security personnel to high-\/priority active areas. 
+
+\mbox{\Hypertarget{classSecurityTeam_a16194f8fad1abbc03a2c118e153a333c}\label{classSecurityTeam_a16194f8fad1abbc03a2c118e153a333c}} 
+\index{SecurityTeam@{SecurityTeam}!removePerson@{removePerson}}
+\index{removePerson@{removePerson}!SecurityTeam@{SecurityTeam}}
+\doxysubsubsection{\texorpdfstring{removePerson()}{removePerson()}}
+{\footnotesize\ttfamily bool Security\+Team\+::remove\+Person (\begin{DoxyParamCaption}\item[{std\+::string}]{reason,  }\item[{\mbox{\hyperlink{classStageGate}{Stage\+Gate}} $\ast$}]{gate }\end{DoxyParamCaption})}
+
+
+
+Escorts an individual off-\/site and updates gate occupancy metrics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reason} & Description of the security violation or cause. \\
+\hline
+{\em gate} & Optional non-\/owning raw pointer to \mbox{\hyperlink{classStageGate}{Stage\+Gate}} to update occupancy. Can be nullptr\mbox{[}cite\+: 1\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if removal action was logged successfully. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSecurityTeam_a0e9ba754ae05b6be2086d55f28658dda}\label{classSecurityTeam_a0e9ba754ae05b6be2086d55f28658dda}} 
+\index{SecurityTeam@{SecurityTeam}!update@{update}}
+\index{update@{update}!SecurityTeam@{SecurityTeam}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Security\+Team\+::update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNotice}{Notice}} \&}]{notice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Responds to safety notifications by deploying personnel and securing zones. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em notice} & Reference to the \mbox{\hyperlink{classNotice}{Notice}} payload. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classEventUnit_adca0361187e0c7f4963aadfb70cb556f}{Event\+Unit}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSecurityTeam_adae142324813f864eba4977ba32dea2b}\label{classSecurityTeam_adae142324813f864eba4977ba32dea2b}} 
+\index{SecurityTeam@{SecurityTeam}!deployed@{deployed}}
+\index{deployed@{deployed}!SecurityTeam@{SecurityTeam}}
+\doxysubsubsection{\texorpdfstring{deployed}{deployed}}
+{\footnotesize\ttfamily bool Security\+Team\+::deployed\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSecurityTeam_a331ca825431cf04bd3f1fccf72115f63}\label{classSecurityTeam_a331ca825431cf04bd3f1fccf72115f63}} 
+\index{SecurityTeam@{SecurityTeam}!peopleRemoved@{peopleRemoved}}
+\index{peopleRemoved@{peopleRemoved}!SecurityTeam@{SecurityTeam}}
+\doxysubsubsection{\texorpdfstring{peopleRemoved}{peopleRemoved}}
+{\footnotesize\ttfamily int Security\+Team\+::people\+Removed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{SecurityTeam_8h}{Security\+Team.\+h}}\item 
+src/\mbox{\hyperlink{SecurityTeam_8cpp}{Security\+Team.\+cpp}}\end{DoxyCompactItemize}

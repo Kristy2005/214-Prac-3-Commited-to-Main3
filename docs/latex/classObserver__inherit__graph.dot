@@ -1,0 +1,25 @@
+digraph "Observer"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Observer",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Abstract Observer interface in the Observer design pattern."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="EventGroup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classEventGroup.html",tooltip="Composite class representing a festival zone/group containing multiple components."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="EventUnit",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classEventUnit.html",tooltip="Abstract Leaf class in the Composite pattern and Observer in the Observer pattern."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Bar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBar.html",tooltip="Concrete Leaf managing beverage inventory, sales, and last-call protocols."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="EntranceGate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classEntranceGate.html",tooltip="Concrete Leaf managing primary festival entry and age verification."];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="FoodVendor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFoodVendor.html",tooltip="Concrete Leaf managing food inventory and catering operations."];
+  Node3 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="MedicalTeam",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classMedicalTeam.html",tooltip="Concrete Leaf managing medical triage, supply tracking, and patient admissions."];
+  Node3 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="SecurityTeam",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classSecurityTeam.html",tooltip="Concrete Leaf handling crowd control, personnel deployment, and incident response."];
+  Node3 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="Stage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classStage.html",tooltip="Concrete Leaf component representing a performance stage."];
+  Node3 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="StageGate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classStageGate.html",tooltip="Concrete Leaf managing localized access control and occupancy tracking for stages."];
+}

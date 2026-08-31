@@ -18,20 +18,28 @@ class Notice;
  * 
  * @details 
  * GoF Role: ConcreteObserver (Observer Pattern) / Leaf (Composite Pattern).
- * Holds a non-owning pointer reference to its associated Stage object[cite: 1].
+ * Holds a non-owning pointer reference to its associated Stage object.
+ * This Stage object must exist before any operation can take place.
  */
 class StageGate : public EventUnit {
 private:
-    int currentOccupancy;
-    bool admitting;
-    Stage* controlledStage;
+    int currentOccupancy;   /**< Tracks current number of attendees inside the stage area. */
+    bool admitting;         /**< Flag indicating if the gate is active and accepting entries. */
+    Stage* controlledStage; /**< Non-owning pointer to the target Stage instance. */
 
 public:
+    /**
+     * @brief Virtual destructor ensuring clean polymorphic cleanup.
+     * @details Even though StageGate does not own raw dynamic memory directly, 
+     * the destructor must be explicitly declared to avoid vtable linker errors 
+     * as this class inherits from the abstract Observer class.
+     */
     virtual ~StageGate();
+
     /**
      * @brief Constructs a StageGate associated with a specific Stage.
      * @param name Identifier for the access gate.
-     * @param stage Non-owning raw pointer to the Stage being controlled. Must not be nullptr[cite: 1].
+     * @param stage Non-owning raw pointer to the Stage being controlled. Must not be nullptr.
      */
     StageGate(std::string name, Stage* stage);
 
@@ -39,7 +47,7 @@ public:
      * @brief Checks if the gate is accepting admissions based on current occupancy and state.
      * @return True if admission is allowed and capacity is available, false otherwise.
      */
-    bool canAdmit()const;
+    bool canAdmit() const;
 
     /**
      * @brief Admits an attendee into the stage area, incrementing occupancy metrics.
@@ -66,4 +74,4 @@ public:
     void update(const Notice& notice) override;
 };
 
-#endif
+#endif // STAGEGATE_H

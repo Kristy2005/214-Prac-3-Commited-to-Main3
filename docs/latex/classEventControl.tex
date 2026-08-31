@@ -1,0 +1,99 @@
+\hypertarget{classEventControl}{}\doxysection{Event\+Control Class Reference}
+\label{classEventControl}\index{EventControl@{EventControl}}
+
+
+Concrete \mbox{\hyperlink{classSubject}{Subject}} representing top-\/level event management.  
+
+
+
+
+{\ttfamily \#include $<$Event\+Control.\+h$>$}
+
+
+
+Inheritance diagram for Event\+Control\+:
+% FIG 0
+
+
+Collaboration diagram for Event\+Control\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEventControl_ad42d2d9d6ae9030a8bb71587c34cb495}{Event\+Control}} (std\+::string \mbox{\hyperlink{classEventControl_abed44418842f5ec2d9dbfbbd68410e10}{event\+Name}})
+\item 
+virtual \mbox{\hyperlink{classEventControl_a0123af35e071d2d3174615cd7b72304e}{$\sim$\+Event\+Control}} () override
+\item 
+void \mbox{\hyperlink{classEventControl_ac21db8f4791c306a2b214309b4e400e6}{issue\+Notice}} (const \mbox{\hyperlink{classNotice}{Notice}} \&notice)
+\item 
+void \mbox{\hyperlink{classEventControl_ad58e12a841d8f06cc17b8b0d8da1000b}{notify}} (const \mbox{\hyperlink{classNotice}{Notice}} \&notice) override
+\begin{DoxyCompactList}\small\item\em Broadcasts a notice to all currently registered observers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classEventControl_abed44418842f5ec2d9dbfbbd68410e10}{event\+Name}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Concrete \mbox{\hyperlink{classSubject}{Subject}} representing top-\/level event management. 
+
+GoF Role\+: Concrete\+Subject (\mbox{\hyperlink{classObserver}{Observer}} Pattern). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEventControl_ad42d2d9d6ae9030a8bb71587c34cb495}\label{classEventControl_ad42d2d9d6ae9030a8bb71587c34cb495}} 
+\index{EventControl@{EventControl}!EventControl@{EventControl}}
+\index{EventControl@{EventControl}!EventControl@{EventControl}}
+\doxysubsubsection{\texorpdfstring{EventControl()}{EventControl()}}
+{\footnotesize\ttfamily Event\+Control\+::\+Event\+Control (\begin{DoxyParamCaption}\item[{std\+::string}]{event\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{classEventControl_a0123af35e071d2d3174615cd7b72304e}\label{classEventControl_a0123af35e071d2d3174615cd7b72304e}} 
+\index{EventControl@{EventControl}!````~EventControl@{$\sim$EventControl}}
+\index{````~EventControl@{$\sim$EventControl}!EventControl@{EventControl}}
+\doxysubsubsection{\texorpdfstring{$\sim$EventControl()}{~EventControl()}}
+{\footnotesize\ttfamily Event\+Control\+::$\sim$\+Event\+Control (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEventControl_ac21db8f4791c306a2b214309b4e400e6}\label{classEventControl_ac21db8f4791c306a2b214309b4e400e6}} 
+\index{EventControl@{EventControl}!issueNotice@{issueNotice}}
+\index{issueNotice@{issueNotice}!EventControl@{EventControl}}
+\doxysubsubsection{\texorpdfstring{issueNotice()}{issueNotice()}}
+{\footnotesize\ttfamily void Event\+Control\+::issue\+Notice (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNotice}{Notice}} \&}]{notice }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classEventControl_ad58e12a841d8f06cc17b8b0d8da1000b}\label{classEventControl_ad58e12a841d8f06cc17b8b0d8da1000b}} 
+\index{EventControl@{EventControl}!notify@{notify}}
+\index{notify@{notify}!EventControl@{EventControl}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily void Event\+Control\+::notify (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNotice}{Notice}} \&}]{notice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Broadcasts a notice to all currently registered observers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em notice} & Push-\/notification data payload passed to observers. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classSubject_a3dee8c149e7f10c37213050cdc86d52b}{Subject}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classEventControl_abed44418842f5ec2d9dbfbbd68410e10}\label{classEventControl_abed44418842f5ec2d9dbfbbd68410e10}} 
+\index{EventControl@{EventControl}!eventName@{eventName}}
+\index{eventName@{eventName}!EventControl@{EventControl}}
+\doxysubsubsection{\texorpdfstring{eventName}{eventName}}
+{\footnotesize\ttfamily std\+::string Event\+Control\+::event\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{EventControl_8h}{Event\+Control.\+h}}\item 
+src/\mbox{\hyperlink{EventControl_8cpp}{Event\+Control.\+cpp}}\end{DoxyCompactItemize}

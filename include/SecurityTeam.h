@@ -18,21 +18,28 @@ class Notice;
  * 
  * @details 
  * GoF Role: ConcreteObserver (Observer Pattern) / Leaf (Composite Pattern).
- * Deploys dynamically upon receiving safety alerts, capacity warnings, or evacuation commands[cite: 1].
+ * Deploys dynamically upon receiving safety alerts, capacity warnings, or evacuation commands.
+ * 
+ * DESIGN DECISION: Dynamic Cross-Leaf Operations
+ * SecurityTeam operates alongside StageGate components without maintaining persistent ownership,
+ * allowing security personnel to interact with any gate dynamically across different festival zones.
  */
 class SecurityTeam : public EventUnit {
 private:
-    bool deployed;
-    int peopleRemoved;
+    bool deployed;     /**< Boolean representing whether this security team is currently occupied or ready to assist. */
+    int peopleRemoved; /**< Counter tracking total attendees removed for census accounting and security audit reports. */
 
 public:
+    /**
+     * @brief Virtual destructor ensuring clean polymorphic cleanup.
+     */
     virtual ~SecurityTeam();
+
     /**
      * @brief Constructs a SecurityTeam instance.
      * @param name Identifier or unit designation for the team.
      */
-    explicit SecurityTeam(std::string name);
-
+    SecurityTeam(std::string name);
 
     /**
      * @brief Deploys security personnel to high-priority active areas.
@@ -42,8 +49,8 @@ public:
     /**
      * @brief Escorts an individual off-site and updates gate occupancy metrics.
      * @param reason Description of the security violation or cause.
-     * @param gate Optional non-owning raw pointer to StageGate to update occupancy. Can be nullptr[cite: 1].
-     * @return True if removal action was logged successfully.
+     * @param gate Non-owning raw pointer to the StageGate object where occupancy must be decremented. Must not be nullptr.
+     * @return True if removal action was logged and executed successfully.
      */
     bool removePerson(std::string reason, StageGate* gate);
 
@@ -54,4 +61,4 @@ public:
     void update(const Notice& notice) override;
 };
 
-#endif
+#endif // SECURITYTEAM_H
