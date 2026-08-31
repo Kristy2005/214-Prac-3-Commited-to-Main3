@@ -1,0 +1,130 @@
+\hypertarget{classNotice}{}\doxysection{Notice Class Reference}
+\label{classNotice}\index{Notice@{Notice}}
+
+
+Encapsulates notification data pushed from \mbox{\hyperlink{classSubject}{Subject}} to Observers.  
+
+
+
+
+{\ttfamily \#include $<$Notice.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNotice_a101ce9d46d96b95e3c271184a251157d}{Notice}} (\mbox{\hyperlink{NoticeType_8h_af363a9693a3fb910ac7c54199a89c570}{Notice\+Type}} \mbox{\hyperlink{classNotice_ae2f875d6153cefbd8baaadcf4d6cdc88}{type}}, std\+::string \mbox{\hyperlink{classNotice_ad07e4c63f849c0c960addcd2fd2276a2}{message}}, std\+::string \mbox{\hyperlink{classNotice_aa324e47d020f7dd16be248be977d564a}{target}}=\char`\"{}ALL\char`\"{}, int \mbox{\hyperlink{classNotice_a8fdef316298065da4a18c7bc9f9c8f34}{value}}=0)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classNotice}{Notice}} payload object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNotice_aecb097634bf33cc6284c1ce94bfa53fa}{$\sim$\+Notice}} ()
+\item 
+\mbox{\hyperlink{NoticeType_8h_af363a9693a3fb910ac7c54199a89c570}{Notice\+Type}} \mbox{\hyperlink{classNotice_a7a05c62929c0d946e9cd205b595cbdc3}{get\+Type}} () const
+\item 
+std\+::string \mbox{\hyperlink{classNotice_a535ec24c6347d3b92c98a1131b52d6be}{get\+Message}} () const
+\item 
+std\+::string \mbox{\hyperlink{classNotice_a423068dc58623e682b801fe6a48a3234}{get\+Target}} () const
+\item 
+int \mbox{\hyperlink{classNotice_aa541011d9322b0325cdffce8b87c9b71}{get\+Value}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{NoticeType_8h_af363a9693a3fb910ac7c54199a89c570}{Notice\+Type}} \mbox{\hyperlink{classNotice_ae2f875d6153cefbd8baaadcf4d6cdc88}{type}}
+\item 
+std\+::string \mbox{\hyperlink{classNotice_ad07e4c63f849c0c960addcd2fd2276a2}{message}}
+\item 
+std\+::string \mbox{\hyperlink{classNotice_aa324e47d020f7dd16be248be977d564a}{target}}
+\item 
+int \mbox{\hyperlink{classNotice_a8fdef316298065da4a18c7bc9f9c8f34}{value}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Encapsulates notification data pushed from \mbox{\hyperlink{classSubject}{Subject}} to Observers. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNotice_a101ce9d46d96b95e3c271184a251157d}\label{classNotice_a101ce9d46d96b95e3c271184a251157d}} 
+\index{Notice@{Notice}!Notice@{Notice}}
+\index{Notice@{Notice}!Notice@{Notice}}
+\doxysubsubsection{\texorpdfstring{Notice()}{Notice()}}
+{\footnotesize\ttfamily Notice\+::\+Notice (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{NoticeType_8h_af363a9693a3fb910ac7c54199a89c570}{Notice\+Type}}}]{type,  }\item[{std\+::string}]{message,  }\item[{std\+::string}]{target = {\ttfamily \char`\"{}ALL\char`\"{}},  }\item[{int}]{value = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classNotice}{Notice}} payload object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Category of event notification. \\
+\hline
+{\em message} & Descriptive textual message. \\
+\hline
+{\em target} & Specific target unit or zone name (default\+: \char`\"{}\+ALL\char`\"{}). \\
+\hline
+{\em value} & Optional numeric metric (e.\+g., threshold capacity or severity). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNotice_aecb097634bf33cc6284c1ce94bfa53fa}\label{classNotice_aecb097634bf33cc6284c1ce94bfa53fa}} 
+\index{Notice@{Notice}!````~Notice@{$\sim$Notice}}
+\index{````~Notice@{$\sim$Notice}!Notice@{Notice}}
+\doxysubsubsection{\texorpdfstring{$\sim$Notice()}{~Notice()}}
+{\footnotesize\ttfamily Notice\+::$\sim$\+Notice (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classNotice_a535ec24c6347d3b92c98a1131b52d6be}\label{classNotice_a535ec24c6347d3b92c98a1131b52d6be}} 
+\index{Notice@{Notice}!getMessage@{getMessage}}
+\index{getMessage@{getMessage}!Notice@{Notice}}
+\doxysubsubsection{\texorpdfstring{getMessage()}{getMessage()}}
+{\footnotesize\ttfamily std\+::string Notice\+::get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classNotice_a423068dc58623e682b801fe6a48a3234}\label{classNotice_a423068dc58623e682b801fe6a48a3234}} 
+\index{Notice@{Notice}!getTarget@{getTarget}}
+\index{getTarget@{getTarget}!Notice@{Notice}}
+\doxysubsubsection{\texorpdfstring{getTarget()}{getTarget()}}
+{\footnotesize\ttfamily std\+::string Notice\+::get\+Target (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classNotice_a7a05c62929c0d946e9cd205b595cbdc3}\label{classNotice_a7a05c62929c0d946e9cd205b595cbdc3}} 
+\index{Notice@{Notice}!getType@{getType}}
+\index{getType@{getType}!Notice@{Notice}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{NoticeType_8h_af363a9693a3fb910ac7c54199a89c570}{Notice\+Type}} Notice\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classNotice_aa541011d9322b0325cdffce8b87c9b71}\label{classNotice_aa541011d9322b0325cdffce8b87c9b71}} 
+\index{Notice@{Notice}!getValue@{getValue}}
+\index{getValue@{getValue}!Notice@{Notice}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily int Notice\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classNotice_ad07e4c63f849c0c960addcd2fd2276a2}\label{classNotice_ad07e4c63f849c0c960addcd2fd2276a2}} 
+\index{Notice@{Notice}!message@{message}}
+\index{message@{message}!Notice@{Notice}}
+\doxysubsubsection{\texorpdfstring{message}{message}}
+{\footnotesize\ttfamily std\+::string Notice\+::message\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classNotice_aa324e47d020f7dd16be248be977d564a}\label{classNotice_aa324e47d020f7dd16be248be977d564a}} 
+\index{Notice@{Notice}!target@{target}}
+\index{target@{target}!Notice@{Notice}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily std\+::string Notice\+::target\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classNotice_ae2f875d6153cefbd8baaadcf4d6cdc88}\label{classNotice_ae2f875d6153cefbd8baaadcf4d6cdc88}} 
+\index{Notice@{Notice}!type@{type}}
+\index{type@{type}!Notice@{Notice}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{NoticeType_8h_af363a9693a3fb910ac7c54199a89c570}{Notice\+Type}} Notice\+::type\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classNotice_a8fdef316298065da4a18c7bc9f9c8f34}\label{classNotice_a8fdef316298065da4a18c7bc9f9c8f34}} 
+\index{Notice@{Notice}!value@{value}}
+\index{value@{value}!Notice@{Notice}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily int Notice\+::value\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Notice_8h}{Notice.\+h}}\item 
+src/\mbox{\hyperlink{Notice_8cpp}{Notice.\+cpp}}\end{DoxyCompactItemize}

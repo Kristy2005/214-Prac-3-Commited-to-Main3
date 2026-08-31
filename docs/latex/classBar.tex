@@ -1,0 +1,170 @@
+\hypertarget{classBar}{}\doxysection{Bar Class Reference}
+\label{classBar}\index{Bar@{Bar}}
+
+
+Concrete Leaf managing beverage inventory, sales, and last-\/call protocols.  
+
+
+
+
+{\ttfamily \#include $<$Bar.\+h$>$}
+
+
+
+Inheritance diagram for Bar\+:
+% FIG 0
+
+
+Collaboration diagram for Bar\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classBar_a9c7ebea0c189423591741ac438985316}{$\sim$\+Bar}} ()
+\item 
+\mbox{\hyperlink{classBar_a16bd894f3c1fcc7ca50668af62c99944}{Bar}} (std\+::string \mbox{\hyperlink{classEventComponent_a82348aef118d5b35e0962a4f632cbd19}{name}}, int \mbox{\hyperlink{classBar_a44b9f577e345cab1c76d6e5b7e0e9563}{drink\+Stock}})
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classBar}{Bar}} instance with initial inventory stock. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classBar_af90f8928f2170bee14e9801cf3b35752}{serve\+Drink}} ()
+\begin{DoxyCompactList}\small\item\em Serves a beverage to a customer if stock is available and serving is enabled. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBar_af8337d8a00924b877f6be9078384c5d9}{start\+Last\+Call}} ()
+\begin{DoxyCompactList}\small\item\em Triggers last-\/call protocols in response to schedule or closing alerts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBar_a463082607ce7877c0768dcfc7ee6b5fe}{restock\+Drinks}} (int amount)
+\begin{DoxyCompactList}\small\item\em Adds stock units to the bar\textquotesingle{}s active inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBar_a0a58ced8ab5d9de6f89353cd32f4ea32}{update}} (const \mbox{\hyperlink{classNotice}{Notice}} \&notice) override
+\begin{DoxyCompactList}\small\item\em Receives event notices to initiate last-\/call, resume service, or close down. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classBar_a33fff54974fc9d14b60ce20a10d8b3f1}{serving}}
+\item 
+bool \mbox{\hyperlink{classBar_af05cbdeb880da06ca57fc5d88dcebd25}{last\+Call}}
+\item 
+int \mbox{\hyperlink{classBar_a44b9f577e345cab1c76d6e5b7e0e9563}{drink\+Stock}}
+\item 
+bool \mbox{\hyperlink{classBar_aad9e9c7411f0ee1b5c20b2b31f4aa3fc}{busy}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Concrete Leaf managing beverage inventory, sales, and last-\/call protocols. 
+
+GoF Role\+: Concrete\+Observer (\mbox{\hyperlink{classObserver}{Observer}} Pattern) / Leaf (Composite Pattern). Controls beverage distribution and reacts to schedule changes or festival closure notices\mbox{[}cite\+: 1\mbox{]}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBar_a9c7ebea0c189423591741ac438985316}\label{classBar_a9c7ebea0c189423591741ac438985316}} 
+\index{Bar@{Bar}!````~Bar@{$\sim$Bar}}
+\index{````~Bar@{$\sim$Bar}!Bar@{Bar}}
+\doxysubsubsection{\texorpdfstring{$\sim$Bar()}{~Bar()}}
+{\footnotesize\ttfamily Bar\+::$\sim$\+Bar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classBar_a16bd894f3c1fcc7ca50668af62c99944}\label{classBar_a16bd894f3c1fcc7ca50668af62c99944}} 
+\index{Bar@{Bar}!Bar@{Bar}}
+\index{Bar@{Bar}!Bar@{Bar}}
+\doxysubsubsection{\texorpdfstring{Bar()}{Bar()}}
+{\footnotesize\ttfamily Bar\+::\+Bar (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{drink\+Stock }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classBar}{Bar}} instance with initial inventory stock. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Descriptive identifier for the bar unit. \\
+\hline
+{\em drink\+Stock} & Total initial units of drink inventory. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBar_a463082607ce7877c0768dcfc7ee6b5fe}\label{classBar_a463082607ce7877c0768dcfc7ee6b5fe}} 
+\index{Bar@{Bar}!restockDrinks@{restockDrinks}}
+\index{restockDrinks@{restockDrinks}!Bar@{Bar}}
+\doxysubsubsection{\texorpdfstring{restockDrinks()}{restockDrinks()}}
+{\footnotesize\ttfamily void Bar\+::restock\+Drinks (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption})}
+
+
+
+Adds stock units to the bar\textquotesingle{}s active inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & Quantity of drinks to add to stock. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBar_af90f8928f2170bee14e9801cf3b35752}\label{classBar_af90f8928f2170bee14e9801cf3b35752}} 
+\index{Bar@{Bar}!serveDrink@{serveDrink}}
+\index{serveDrink@{serveDrink}!Bar@{Bar}}
+\doxysubsubsection{\texorpdfstring{serveDrink()}{serveDrink()}}
+{\footnotesize\ttfamily bool Bar\+::serve\+Drink (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Serves a beverage to a customer if stock is available and serving is enabled. 
+
+\begin{DoxyReturn}{Returns}
+True if drink was served successfully, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBar_af8337d8a00924b877f6be9078384c5d9}\label{classBar_af8337d8a00924b877f6be9078384c5d9}} 
+\index{Bar@{Bar}!startLastCall@{startLastCall}}
+\index{startLastCall@{startLastCall}!Bar@{Bar}}
+\doxysubsubsection{\texorpdfstring{startLastCall()}{startLastCall()}}
+{\footnotesize\ttfamily void Bar\+::start\+Last\+Call (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Triggers last-\/call protocols in response to schedule or closing alerts. 
+
+\mbox{\Hypertarget{classBar_a0a58ced8ab5d9de6f89353cd32f4ea32}\label{classBar_a0a58ced8ab5d9de6f89353cd32f4ea32}} 
+\index{Bar@{Bar}!update@{update}}
+\index{update@{update}!Bar@{Bar}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Bar\+::update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNotice}{Notice}} \&}]{notice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Receives event notices to initiate last-\/call, resume service, or close down. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em notice} & Reference to the \mbox{\hyperlink{classNotice}{Notice}} payload. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classEventUnit_adca0361187e0c7f4963aadfb70cb556f}{Event\+Unit}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classBar_aad9e9c7411f0ee1b5c20b2b31f4aa3fc}\label{classBar_aad9e9c7411f0ee1b5c20b2b31f4aa3fc}} 
+\index{Bar@{Bar}!busy@{busy}}
+\index{busy@{busy}!Bar@{Bar}}
+\doxysubsubsection{\texorpdfstring{busy}{busy}}
+{\footnotesize\ttfamily bool Bar\+::busy\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classBar_a44b9f577e345cab1c76d6e5b7e0e9563}\label{classBar_a44b9f577e345cab1c76d6e5b7e0e9563}} 
+\index{Bar@{Bar}!drinkStock@{drinkStock}}
+\index{drinkStock@{drinkStock}!Bar@{Bar}}
+\doxysubsubsection{\texorpdfstring{drinkStock}{drinkStock}}
+{\footnotesize\ttfamily int Bar\+::drink\+Stock\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classBar_af05cbdeb880da06ca57fc5d88dcebd25}\label{classBar_af05cbdeb880da06ca57fc5d88dcebd25}} 
+\index{Bar@{Bar}!lastCall@{lastCall}}
+\index{lastCall@{lastCall}!Bar@{Bar}}
+\doxysubsubsection{\texorpdfstring{lastCall}{lastCall}}
+{\footnotesize\ttfamily bool Bar\+::last\+Call\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classBar_a33fff54974fc9d14b60ce20a10d8b3f1}\label{classBar_a33fff54974fc9d14b60ce20a10d8b3f1}} 
+\index{Bar@{Bar}!serving@{serving}}
+\index{serving@{serving}!Bar@{Bar}}
+\doxysubsubsection{\texorpdfstring{serving}{serving}}
+{\footnotesize\ttfamily bool Bar\+::serving\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Bar_8h}{Bar.\+h}}\item 
+src/\mbox{\hyperlink{Bar_8cpp}{Bar.\+cpp}}\end{DoxyCompactItemize}

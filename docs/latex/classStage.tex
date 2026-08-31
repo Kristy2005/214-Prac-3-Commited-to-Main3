@@ -1,0 +1,148 @@
+\hypertarget{classStage}{}\doxysection{Stage Class Reference}
+\label{classStage}\index{Stage@{Stage}}
+
+
+Concrete Leaf component representing a performance stage.  
+
+
+
+
+{\ttfamily \#include $<$Stage.\+h$>$}
+
+
+
+Inheritance diagram for Stage\+:
+% FIG 0
+
+
+Collaboration diagram for Stage\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStage_a9095b37af98e20d30c51790d5a2614d9}{Stage}} (std\+::string \mbox{\hyperlink{classEventComponent_a82348aef118d5b35e0962a4f632cbd19}{name}}, int \mbox{\hyperlink{classEventUnit_ab580fd919b4ba8f220e6e10df49d9916}{capacity}}, bool \mbox{\hyperlink{classStage_a259e91993c0325efbdb59cabe5cff4d9}{outdoor}}, std\+::string \mbox{\hyperlink{classStage_adf93194a6d4ad7889223c0aef88c0fb0}{genre}}, bool \mbox{\hyperlink{classStage_a5562e5b27ab0b08ce48a520fedbaefa6}{near\+Water}})
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classStage}{Stage}} leaf object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStage_a601c6d05986c698d0a54621375c69947}{update}} (const \mbox{\hyperlink{classNotice}{Notice}} \&notice) override
+\begin{DoxyCompactList}\small\item\em Receives event updates pushed from a \mbox{\hyperlink{classSubject}{Subject}} and executes stage behavior. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStage_a39e038810e6c7cc8990e3a1876f212a4}{pause\+Performance}} ()
+\begin{DoxyCompactList}\small\item\em Pauses active stage performance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStage_a0d22b6315b966e2652078298435b7c86}{resume\+Performance}} ()
+\begin{DoxyCompactList}\small\item\em Resumes active stage performance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classStage_a259e91993c0325efbdb59cabe5cff4d9}{outdoor}}
+\item 
+bool \mbox{\hyperlink{classStage_a156e668226cf7ca8acd26c84b6235bfc}{performance\+Paused}}
+\item 
+std\+::string \mbox{\hyperlink{classStage_adf93194a6d4ad7889223c0aef88c0fb0}{genre}}
+\item 
+bool \mbox{\hyperlink{classStage_a5562e5b27ab0b08ce48a520fedbaefa6}{near\+Water}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Concrete Leaf component representing a performance stage. 
+
+GoF Role\+: Concrete\+Observer (\mbox{\hyperlink{classObserver}{Observer}} Pattern) / Leaf (Composite Pattern). Represents active music/performance stages across festival zones. Responds to operational, capacity, and safety notifications (e.\+g., PAUSE, RESUME, WEATHER\+\_\+\+ALERT, EVACUATE). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classStage_a9095b37af98e20d30c51790d5a2614d9}\label{classStage_a9095b37af98e20d30c51790d5a2614d9}} 
+\index{Stage@{Stage}!Stage@{Stage}}
+\index{Stage@{Stage}!Stage@{Stage}}
+\doxysubsubsection{\texorpdfstring{Stage()}{Stage()}}
+{\footnotesize\ttfamily Stage\+::\+Stage (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{capacity,  }\item[{bool}]{outdoor,  }\item[{std\+::string}]{genre,  }\item[{bool}]{near\+Water }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classStage}{Stage}} leaf object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Descriptive name of the stage. \\
+\hline
+{\em capacity} & Maximum attendee capacity. \\
+\hline
+{\em outdoor} & True if the stage is an outdoor setup. \\
+\hline
+{\em genre} & Music/performance genre associated with this stage. \\
+\hline
+{\em near\+Water} & True if the stage is near water features. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classStage_a39e038810e6c7cc8990e3a1876f212a4}\label{classStage_a39e038810e6c7cc8990e3a1876f212a4}} 
+\index{Stage@{Stage}!pausePerformance@{pausePerformance}}
+\index{pausePerformance@{pausePerformance}!Stage@{Stage}}
+\doxysubsubsection{\texorpdfstring{pausePerformance()}{pausePerformance()}}
+{\footnotesize\ttfamily void Stage\+::pause\+Performance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Pauses active stage performance. 
+
+\mbox{\Hypertarget{classStage_a0d22b6315b966e2652078298435b7c86}\label{classStage_a0d22b6315b966e2652078298435b7c86}} 
+\index{Stage@{Stage}!resumePerformance@{resumePerformance}}
+\index{resumePerformance@{resumePerformance}!Stage@{Stage}}
+\doxysubsubsection{\texorpdfstring{resumePerformance()}{resumePerformance()}}
+{\footnotesize\ttfamily void Stage\+::resume\+Performance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resumes active stage performance. 
+
+\mbox{\Hypertarget{classStage_a601c6d05986c698d0a54621375c69947}\label{classStage_a601c6d05986c698d0a54621375c69947}} 
+\index{Stage@{Stage}!update@{update}}
+\index{update@{update}!Stage@{Stage}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Stage\+::update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNotice}{Notice}} \&}]{notice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Receives event updates pushed from a \mbox{\hyperlink{classSubject}{Subject}} and executes stage behavior. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em notice} & Data payload containing notice type and message details. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classEventUnit_adca0361187e0c7f4963aadfb70cb556f}{Event\+Unit}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classStage_adf93194a6d4ad7889223c0aef88c0fb0}\label{classStage_adf93194a6d4ad7889223c0aef88c0fb0}} 
+\index{Stage@{Stage}!genre@{genre}}
+\index{genre@{genre}!Stage@{Stage}}
+\doxysubsubsection{\texorpdfstring{genre}{genre}}
+{\footnotesize\ttfamily std\+::string Stage\+::genre\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classStage_a5562e5b27ab0b08ce48a520fedbaefa6}\label{classStage_a5562e5b27ab0b08ce48a520fedbaefa6}} 
+\index{Stage@{Stage}!nearWater@{nearWater}}
+\index{nearWater@{nearWater}!Stage@{Stage}}
+\doxysubsubsection{\texorpdfstring{nearWater}{nearWater}}
+{\footnotesize\ttfamily bool Stage\+::near\+Water\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classStage_a259e91993c0325efbdb59cabe5cff4d9}\label{classStage_a259e91993c0325efbdb59cabe5cff4d9}} 
+\index{Stage@{Stage}!outdoor@{outdoor}}
+\index{outdoor@{outdoor}!Stage@{Stage}}
+\doxysubsubsection{\texorpdfstring{outdoor}{outdoor}}
+{\footnotesize\ttfamily bool Stage\+::outdoor\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classStage_a156e668226cf7ca8acd26c84b6235bfc}\label{classStage_a156e668226cf7ca8acd26c84b6235bfc}} 
+\index{Stage@{Stage}!performancePaused@{performancePaused}}
+\index{performancePaused@{performancePaused}!Stage@{Stage}}
+\doxysubsubsection{\texorpdfstring{performancePaused}{performancePaused}}
+{\footnotesize\ttfamily bool Stage\+::performance\+Paused\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Stage_8h}{Stage.\+h}}\item 
+src/\mbox{\hyperlink{Stage_8cpp}{Stage.\+cpp}}\end{DoxyCompactItemize}

@@ -33,9 +33,8 @@ private:
     bool lastCall;    /**< Flag indicating if last-call restrictions are currently in effect. */
     int drinkStock;   /**< Current inventory count of available beverages. */
     bool busy;        /**< State flag indicating high-density customer activity. */
-
+   
 public:
-    virtual ~Bar();
     /**
      * @brief Constructs a Bar instance with a name and initial drink stock.
      * @param name Descriptive identifier for the bar unit (e.g., "Main Stage Bar").
@@ -47,9 +46,10 @@ public:
      * @brief Virtual destructor ensuring clean polymorphic cleanup.
      */
     virtual ~Bar();
-
+   
     /**
      * @brief Serves a beverage to a customer if stock is available and serving is enabled.
+     * @return True if a drink was served successfully, false if out of stock or closed.
      * @return True if a drink was served successfully, false if out of stock or closed.
      */
     bool serveDrink();
@@ -71,4 +71,5 @@ public:
      */
     void update(const Notice& notice) override;
 };
-#endif
+
+#endif // BAR_H

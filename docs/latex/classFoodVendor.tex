@@ -1,0 +1,150 @@
+\hypertarget{classFoodVendor}{}\doxysection{Food\+Vendor Class Reference}
+\label{classFoodVendor}\index{FoodVendor@{FoodVendor}}
+
+
+Concrete Leaf managing food inventory and catering operations.  
+
+
+
+
+{\ttfamily \#include $<$Food\+Vendor.\+h$>$}
+
+
+
+Inheritance diagram for Food\+Vendor\+:
+% FIG 0
+
+
+Collaboration diagram for Food\+Vendor\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classFoodVendor_a212b4bf98652b63f810bb9ea548d9c01}{$\sim$\+Food\+Vendor}} ()
+\item 
+\mbox{\hyperlink{classFoodVendor_ae64c9c8ac6318ca5051ad806adf080dd}{Food\+Vendor}} (std\+::string \mbox{\hyperlink{classEventComponent_a82348aef118d5b35e0962a4f632cbd19}{name}}, int \mbox{\hyperlink{classFoodVendor_a58106add4fc75cb8ccb3fd539efaf62e}{stock\+Level}})
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classFoodVendor}{Food\+Vendor}} instance. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classFoodVendor_a4aace6f5549c697937b67f0660855156}{serve\+Food}} ()
+\begin{DoxyCompactList}\small\item\em Serves a food order if vendor is active and stock is available. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFoodVendor_a145f5954d872ba6715b7c6b743e4ceaf}{restock}} (int amount)
+\begin{DoxyCompactList}\small\item\em Replenishes available food inventory stock. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFoodVendor_ae569b3f50083769d3495c31a80840e24}{update}} (const \mbox{\hyperlink{classNotice}{Notice}} \&notice) override
+\begin{DoxyCompactList}\small\item\em Handles operational state changes triggered by festival notice dispatches. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classFoodVendor_a7bc3486f5e1df766340ee7f45c7c8872}{serving}}
+\item 
+int \mbox{\hyperlink{classFoodVendor_a58106add4fc75cb8ccb3fd539efaf62e}{stock\+Level}}
+\item 
+bool \mbox{\hyperlink{classFoodVendor_ab71c82ec16c82b8efe47d7a191b4e5de}{busy}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Concrete Leaf managing food inventory and catering operations. 
+
+GoF Role\+: Concrete\+Observer (\mbox{\hyperlink{classObserver}{Observer}} Pattern) / Leaf (Composite Pattern). Reacts to opening, closing, and emergency evacuation notices across festival zones\mbox{[}cite\+: 1\mbox{]}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFoodVendor_a212b4bf98652b63f810bb9ea548d9c01}\label{classFoodVendor_a212b4bf98652b63f810bb9ea548d9c01}} 
+\index{FoodVendor@{FoodVendor}!````~FoodVendor@{$\sim$FoodVendor}}
+\index{````~FoodVendor@{$\sim$FoodVendor}!FoodVendor@{FoodVendor}}
+\doxysubsubsection{\texorpdfstring{$\sim$FoodVendor()}{~FoodVendor()}}
+{\footnotesize\ttfamily Food\+Vendor\+::$\sim$\+Food\+Vendor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classFoodVendor_ae64c9c8ac6318ca5051ad806adf080dd}\label{classFoodVendor_ae64c9c8ac6318ca5051ad806adf080dd}} 
+\index{FoodVendor@{FoodVendor}!FoodVendor@{FoodVendor}}
+\index{FoodVendor@{FoodVendor}!FoodVendor@{FoodVendor}}
+\doxysubsubsection{\texorpdfstring{FoodVendor()}{FoodVendor()}}
+{\footnotesize\ttfamily Food\+Vendor\+::\+Food\+Vendor (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{stock\+Level }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classFoodVendor}{Food\+Vendor}} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the food stall or truck. \\
+\hline
+{\em stock\+Level} & Initial available food portions in stock. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFoodVendor_a145f5954d872ba6715b7c6b743e4ceaf}\label{classFoodVendor_a145f5954d872ba6715b7c6b743e4ceaf}} 
+\index{FoodVendor@{FoodVendor}!restock@{restock}}
+\index{restock@{restock}!FoodVendor@{FoodVendor}}
+\doxysubsubsection{\texorpdfstring{restock()}{restock()}}
+{\footnotesize\ttfamily void Food\+Vendor\+::restock (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption})}
+
+
+
+Replenishes available food inventory stock. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & Quantity of food portions added to stock. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFoodVendor_a4aace6f5549c697937b67f0660855156}\label{classFoodVendor_a4aace6f5549c697937b67f0660855156}} 
+\index{FoodVendor@{FoodVendor}!serveFood@{serveFood}}
+\index{serveFood@{serveFood}!FoodVendor@{FoodVendor}}
+\doxysubsubsection{\texorpdfstring{serveFood()}{serveFood()}}
+{\footnotesize\ttfamily bool Food\+Vendor\+::serve\+Food (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Serves a food order if vendor is active and stock is available. 
+
+\begin{DoxyReturn}{Returns}
+True if order was filled, false if out of stock or closed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodVendor_ae569b3f50083769d3495c31a80840e24}\label{classFoodVendor_ae569b3f50083769d3495c31a80840e24}} 
+\index{FoodVendor@{FoodVendor}!update@{update}}
+\index{update@{update}!FoodVendor@{FoodVendor}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Food\+Vendor\+::update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNotice}{Notice}} \&}]{notice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Handles operational state changes triggered by festival notice dispatches. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em notice} & Reference to the \mbox{\hyperlink{classNotice}{Notice}} payload. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classEventUnit_adca0361187e0c7f4963aadfb70cb556f}{Event\+Unit}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classFoodVendor_ab71c82ec16c82b8efe47d7a191b4e5de}\label{classFoodVendor_ab71c82ec16c82b8efe47d7a191b4e5de}} 
+\index{FoodVendor@{FoodVendor}!busy@{busy}}
+\index{busy@{busy}!FoodVendor@{FoodVendor}}
+\doxysubsubsection{\texorpdfstring{busy}{busy}}
+{\footnotesize\ttfamily bool Food\+Vendor\+::busy\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classFoodVendor_a7bc3486f5e1df766340ee7f45c7c8872}\label{classFoodVendor_a7bc3486f5e1df766340ee7f45c7c8872}} 
+\index{FoodVendor@{FoodVendor}!serving@{serving}}
+\index{serving@{serving}!FoodVendor@{FoodVendor}}
+\doxysubsubsection{\texorpdfstring{serving}{serving}}
+{\footnotesize\ttfamily bool Food\+Vendor\+::serving\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classFoodVendor_a58106add4fc75cb8ccb3fd539efaf62e}\label{classFoodVendor_a58106add4fc75cb8ccb3fd539efaf62e}} 
+\index{FoodVendor@{FoodVendor}!stockLevel@{stockLevel}}
+\index{stockLevel@{stockLevel}!FoodVendor@{FoodVendor}}
+\doxysubsubsection{\texorpdfstring{stockLevel}{stockLevel}}
+{\footnotesize\ttfamily int Food\+Vendor\+::stock\+Level\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{FoodVendor_8h}{Food\+Vendor.\+h}}\item 
+src/\mbox{\hyperlink{FoodVendor_8cpp}{Food\+Vendor.\+cpp}}\end{DoxyCompactItemize}

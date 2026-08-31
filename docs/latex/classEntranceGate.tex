@@ -1,0 +1,150 @@
+\hypertarget{classEntranceGate}{}\doxysection{Entrance\+Gate Class Reference}
+\label{classEntranceGate}\index{EntranceGate@{EntranceGate}}
+
+
+Concrete Leaf managing primary festival entry and age verification.  
+
+
+
+
+{\ttfamily \#include $<$Entrance\+Gate.\+h$>$}
+
+
+
+Inheritance diagram for Entrance\+Gate\+:
+% FIG 0
+
+
+Collaboration diagram for Entrance\+Gate\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEntranceGate_a0c3b836fdfba176c9701681ad1d0dc47}{Entrance\+Gate}} (std\+::string \mbox{\hyperlink{classEventComponent_a82348aef118d5b35e0962a4f632cbd19}{name}}, int \mbox{\hyperlink{classEntranceGate_aba6e9a7dab6bebf18292b643ec89bc4d}{minimum\+Age}}=18)
+\begin{DoxyCompactList}\small\item\em Constructs an \mbox{\hyperlink{classEntranceGate}{Entrance\+Gate}} instance. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntranceGate_ac4d32d51443c88baf0a8513a06109ed7}{check\+ID}} (int age) const
+\begin{DoxyCompactList}\small\item\em Verifies whether an attendee satisfies age requirements. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntranceGate_a6fce13d1c554673b5cf9ac034396cc27}{admit\+Attendee}} (int age)
+\begin{DoxyCompactList}\small\item\em Processes an attendee entry attempt based on gate state and age criteria. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntranceGate_acb2419750b61af74485e37a7c5d0fd40}{update}} (const \mbox{\hyperlink{classNotice}{Notice}} \&notice) override
+\begin{DoxyCompactList}\small\item\em Handles incoming event notices to open, close, or halt gate admissions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntranceGate_ac987c6a0141a761f80f8182f83ae3130}{$\sim$\+Entrance\+Gate}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classEntranceGate_aba6e9a7dab6bebf18292b643ec89bc4d}{minimum\+Age}}
+\item 
+bool \mbox{\hyperlink{classEntranceGate_a80ad8c01662cbaa0c50b2fe1ebf4b1d9}{admitting}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Concrete Leaf managing primary festival entry and age verification. 
+
+GoF Role\+: Concrete\+Observer (\mbox{\hyperlink{classObserver}{Observer}} Pattern) / Leaf (Composite Pattern). Controls access at venue boundaries and halts admissions during closure or evacuation notices\mbox{[}cite\+: 1\mbox{]}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEntranceGate_a0c3b836fdfba176c9701681ad1d0dc47}\label{classEntranceGate_a0c3b836fdfba176c9701681ad1d0dc47}} 
+\index{EntranceGate@{EntranceGate}!EntranceGate@{EntranceGate}}
+\index{EntranceGate@{EntranceGate}!EntranceGate@{EntranceGate}}
+\doxysubsubsection{\texorpdfstring{EntranceGate()}{EntranceGate()}}
+{\footnotesize\ttfamily Entrance\+Gate\+::\+Entrance\+Gate (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{minimum\+Age = {\ttfamily 18} }\end{DoxyParamCaption})}
+
+
+
+Constructs an \mbox{\hyperlink{classEntranceGate}{Entrance\+Gate}} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name or label of the gate. \\
+\hline
+{\em minimum\+Age} & Minimum age required for attendee entry (default\+: 18). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEntranceGate_ac987c6a0141a761f80f8182f83ae3130}\label{classEntranceGate_ac987c6a0141a761f80f8182f83ae3130}} 
+\index{EntranceGate@{EntranceGate}!````~EntranceGate@{$\sim$EntranceGate}}
+\index{````~EntranceGate@{$\sim$EntranceGate}!EntranceGate@{EntranceGate}}
+\doxysubsubsection{\texorpdfstring{$\sim$EntranceGate()}{~EntranceGate()}}
+{\footnotesize\ttfamily Entrance\+Gate\+::$\sim$\+Entrance\+Gate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEntranceGate_a6fce13d1c554673b5cf9ac034396cc27}\label{classEntranceGate_a6fce13d1c554673b5cf9ac034396cc27}} 
+\index{EntranceGate@{EntranceGate}!admitAttendee@{admitAttendee}}
+\index{admitAttendee@{admitAttendee}!EntranceGate@{EntranceGate}}
+\doxysubsubsection{\texorpdfstring{admitAttendee()}{admitAttendee()}}
+{\footnotesize\ttfamily bool Entrance\+Gate\+::admit\+Attendee (\begin{DoxyParamCaption}\item[{int}]{age }\end{DoxyParamCaption})}
+
+
+
+Processes an attendee entry attempt based on gate state and age criteria. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em age} & Age of the attendee requesting entry. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if access is granted, false if access is denied or gate is closed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntranceGate_ac4d32d51443c88baf0a8513a06109ed7}\label{classEntranceGate_ac4d32d51443c88baf0a8513a06109ed7}} 
+\index{EntranceGate@{EntranceGate}!checkID@{checkID}}
+\index{checkID@{checkID}!EntranceGate@{EntranceGate}}
+\doxysubsubsection{\texorpdfstring{checkID()}{checkID()}}
+{\footnotesize\ttfamily bool Entrance\+Gate\+::check\+ID (\begin{DoxyParamCaption}\item[{int}]{age }\end{DoxyParamCaption}) const}
+
+
+
+Verifies whether an attendee satisfies age requirements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em age} & Age of the attendee requesting entry. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if attendee meets or exceeds minimum age, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntranceGate_acb2419750b61af74485e37a7c5d0fd40}\label{classEntranceGate_acb2419750b61af74485e37a7c5d0fd40}} 
+\index{EntranceGate@{EntranceGate}!update@{update}}
+\index{update@{update}!EntranceGate@{EntranceGate}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Entrance\+Gate\+::update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNotice}{Notice}} \&}]{notice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Handles incoming event notices to open, close, or halt gate admissions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em notice} & Reference to the \mbox{\hyperlink{classNotice}{Notice}} payload. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classEventUnit_adca0361187e0c7f4963aadfb70cb556f}{Event\+Unit}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classEntranceGate_a80ad8c01662cbaa0c50b2fe1ebf4b1d9}\label{classEntranceGate_a80ad8c01662cbaa0c50b2fe1ebf4b1d9}} 
+\index{EntranceGate@{EntranceGate}!admitting@{admitting}}
+\index{admitting@{admitting}!EntranceGate@{EntranceGate}}
+\doxysubsubsection{\texorpdfstring{admitting}{admitting}}
+{\footnotesize\ttfamily bool Entrance\+Gate\+::admitting\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classEntranceGate_aba6e9a7dab6bebf18292b643ec89bc4d}\label{classEntranceGate_aba6e9a7dab6bebf18292b643ec89bc4d}} 
+\index{EntranceGate@{EntranceGate}!minimumAge@{minimumAge}}
+\index{minimumAge@{minimumAge}!EntranceGate@{EntranceGate}}
+\doxysubsubsection{\texorpdfstring{minimumAge}{minimumAge}}
+{\footnotesize\ttfamily int Entrance\+Gate\+::minimum\+Age\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{EntranceGate_8h}{Entrance\+Gate.\+h}}\item 
+src/\mbox{\hyperlink{EntranceGate_8cpp}{Entrance\+Gate.\+cpp}}\end{DoxyCompactItemize}

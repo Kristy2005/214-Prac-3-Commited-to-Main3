@@ -1,0 +1,178 @@
+\hypertarget{classStageGate}{}\doxysection{Stage\+Gate Class Reference}
+\label{classStageGate}\index{StageGate@{StageGate}}
+
+
+Concrete Leaf managing localized access control and occupancy tracking for stages.  
+
+
+
+
+{\ttfamily \#include $<$Stage\+Gate.\+h$>$}
+
+
+
+Inheritance diagram for Stage\+Gate\+:
+% FIG 0
+
+
+Collaboration diagram for Stage\+Gate\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classStageGate_ac3a8c34c46e6d1f5c2e1b0a98993cccf}{$\sim$\+Stage\+Gate}} ()
+\item 
+\mbox{\hyperlink{classStageGate_aebbbcb1f0f36cf7ade9dbd3461ac2fe1}{Stage\+Gate}} (std\+::string \mbox{\hyperlink{classEventComponent_a82348aef118d5b35e0962a4f632cbd19}{name}}, \mbox{\hyperlink{classStage}{Stage}} $\ast$stage)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classStageGate}{Stage\+Gate}} associated with a specific \mbox{\hyperlink{classStage}{Stage}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classStageGate_aab2404ad27e6ce337c563c2915905ad4}{can\+Admit}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the gate is accepting admissions based on current occupancy and state. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classStageGate_a60056424298159b2cefa8c217e514096}{admit\+Attendee}} ()
+\begin{DoxyCompactList}\small\item\em Admits an attendee into the stage area, incrementing occupancy metrics. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classStageGate_add2f700ebccf295d77c4d2bc49e91635}{attendee\+Leaves}} ()
+\begin{DoxyCompactList}\small\item\em Records an attendee exiting the stage area, decrementing occupancy metrics. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classStageGate_ada3e981b6d97f027dfbf70b19c769131}{get\+Occupancy}} () const
+\begin{DoxyCompactList}\small\item\em Returns current active occupancy for the controlled stage area. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStageGate_a025b1fc05a00c63168c48edaa22e7ace}{update}} (const \mbox{\hyperlink{classNotice}{Notice}} \&notice) override
+\begin{DoxyCompactList}\small\item\em Handles event notices such as capacity alerts or evacuations by locking gate access. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classStageGate_af9e826285403fab89c97ea8b1e959551}{current\+Occupancy}}
+\item 
+bool \mbox{\hyperlink{classStageGate_a6a2d14c6158a574d040788c283628911}{admitting}}
+\item 
+\mbox{\hyperlink{classStage}{Stage}} $\ast$ \mbox{\hyperlink{classStageGate_a515f6ea10b5dde640266fd94dd8f9671}{controlled\+Stage}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Concrete Leaf managing localized access control and occupancy tracking for stages. 
+
+GoF Role\+: Concrete\+Observer (\mbox{\hyperlink{classObserver}{Observer}} Pattern) / Leaf (Composite Pattern). Holds a non-\/owning pointer reference to its associated \mbox{\hyperlink{classStage}{Stage}} object\mbox{[}cite\+: 1\mbox{]}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classStageGate_ac3a8c34c46e6d1f5c2e1b0a98993cccf}\label{classStageGate_ac3a8c34c46e6d1f5c2e1b0a98993cccf}} 
+\index{StageGate@{StageGate}!````~StageGate@{$\sim$StageGate}}
+\index{````~StageGate@{$\sim$StageGate}!StageGate@{StageGate}}
+\doxysubsubsection{\texorpdfstring{$\sim$StageGate()}{~StageGate()}}
+{\footnotesize\ttfamily Stage\+Gate\+::$\sim$\+Stage\+Gate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classStageGate_aebbbcb1f0f36cf7ade9dbd3461ac2fe1}\label{classStageGate_aebbbcb1f0f36cf7ade9dbd3461ac2fe1}} 
+\index{StageGate@{StageGate}!StageGate@{StageGate}}
+\index{StageGate@{StageGate}!StageGate@{StageGate}}
+\doxysubsubsection{\texorpdfstring{StageGate()}{StageGate()}}
+{\footnotesize\ttfamily Stage\+Gate\+::\+Stage\+Gate (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{\mbox{\hyperlink{classStage}{Stage}} $\ast$}]{stage }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classStageGate}{Stage\+Gate}} associated with a specific \mbox{\hyperlink{classStage}{Stage}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Identifier for the access gate. \\
+\hline
+{\em stage} & Non-\/owning raw pointer to the \mbox{\hyperlink{classStage}{Stage}} being controlled. Must not be nullptr\mbox{[}cite\+: 1\mbox{]}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classStageGate_a60056424298159b2cefa8c217e514096}\label{classStageGate_a60056424298159b2cefa8c217e514096}} 
+\index{StageGate@{StageGate}!admitAttendee@{admitAttendee}}
+\index{admitAttendee@{admitAttendee}!StageGate@{StageGate}}
+\doxysubsubsection{\texorpdfstring{admitAttendee()}{admitAttendee()}}
+{\footnotesize\ttfamily bool Stage\+Gate\+::admit\+Attendee (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Admits an attendee into the stage area, incrementing occupancy metrics. 
+
+\begin{DoxyReturn}{Returns}
+True if attendee was successfully admitted, false if admission failed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStageGate_add2f700ebccf295d77c4d2bc49e91635}\label{classStageGate_add2f700ebccf295d77c4d2bc49e91635}} 
+\index{StageGate@{StageGate}!attendeeLeaves@{attendeeLeaves}}
+\index{attendeeLeaves@{attendeeLeaves}!StageGate@{StageGate}}
+\doxysubsubsection{\texorpdfstring{attendeeLeaves()}{attendeeLeaves()}}
+{\footnotesize\ttfamily bool Stage\+Gate\+::attendee\+Leaves (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Records an attendee exiting the stage area, decrementing occupancy metrics. 
+
+\begin{DoxyReturn}{Returns}
+True if an attendee left successfully, false if occupancy was already zero. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStageGate_aab2404ad27e6ce337c563c2915905ad4}\label{classStageGate_aab2404ad27e6ce337c563c2915905ad4}} 
+\index{StageGate@{StageGate}!canAdmit@{canAdmit}}
+\index{canAdmit@{canAdmit}!StageGate@{StageGate}}
+\doxysubsubsection{\texorpdfstring{canAdmit()}{canAdmit()}}
+{\footnotesize\ttfamily bool Stage\+Gate\+::can\+Admit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the gate is accepting admissions based on current occupancy and state. 
+
+\begin{DoxyReturn}{Returns}
+True if admission is allowed and capacity is available, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStageGate_ada3e981b6d97f027dfbf70b19c769131}\label{classStageGate_ada3e981b6d97f027dfbf70b19c769131}} 
+\index{StageGate@{StageGate}!getOccupancy@{getOccupancy}}
+\index{getOccupancy@{getOccupancy}!StageGate@{StageGate}}
+\doxysubsubsection{\texorpdfstring{getOccupancy()}{getOccupancy()}}
+{\footnotesize\ttfamily int Stage\+Gate\+::get\+Occupancy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns current active occupancy for the controlled stage area. 
+
+\begin{DoxyReturn}{Returns}
+Total integer count of attendees currently admitted. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStageGate_a025b1fc05a00c63168c48edaa22e7ace}\label{classStageGate_a025b1fc05a00c63168c48edaa22e7ace}} 
+\index{StageGate@{StageGate}!update@{update}}
+\index{update@{update}!StageGate@{StageGate}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Stage\+Gate\+::update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNotice}{Notice}} \&}]{notice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Handles event notices such as capacity alerts or evacuations by locking gate access. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em notice} & Reference to the \mbox{\hyperlink{classNotice}{Notice}} payload. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classEventUnit_adca0361187e0c7f4963aadfb70cb556f}{Event\+Unit}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classStageGate_a6a2d14c6158a574d040788c283628911}\label{classStageGate_a6a2d14c6158a574d040788c283628911}} 
+\index{StageGate@{StageGate}!admitting@{admitting}}
+\index{admitting@{admitting}!StageGate@{StageGate}}
+\doxysubsubsection{\texorpdfstring{admitting}{admitting}}
+{\footnotesize\ttfamily bool Stage\+Gate\+::admitting\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classStageGate_a515f6ea10b5dde640266fd94dd8f9671}\label{classStageGate_a515f6ea10b5dde640266fd94dd8f9671}} 
+\index{StageGate@{StageGate}!controlledStage@{controlledStage}}
+\index{controlledStage@{controlledStage}!StageGate@{StageGate}}
+\doxysubsubsection{\texorpdfstring{controlledStage}{controlledStage}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStage}{Stage}}$\ast$ Stage\+Gate\+::controlled\+Stage\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classStageGate_af9e826285403fab89c97ea8b1e959551}\label{classStageGate_af9e826285403fab89c97ea8b1e959551}} 
+\index{StageGate@{StageGate}!currentOccupancy@{currentOccupancy}}
+\index{currentOccupancy@{currentOccupancy}!StageGate@{StageGate}}
+\doxysubsubsection{\texorpdfstring{currentOccupancy}{currentOccupancy}}
+{\footnotesize\ttfamily int Stage\+Gate\+::current\+Occupancy\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{StageGate_8h}{Stage\+Gate.\+h}}\item 
+src/\mbox{\hyperlink{StageGate_8cpp}{Stage\+Gate.\+cpp}}\end{DoxyCompactItemize}

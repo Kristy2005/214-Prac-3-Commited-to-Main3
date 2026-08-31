@@ -1,0 +1,11 @@
+digraph "Subject"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Subject",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Abstract Subject base class managing observer registrations and notifications."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="EventControl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classEventControl.html",tooltip="Concrete Subject representing top-level event management."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="EventGroup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classEventGroup.html",tooltip="Composite class representing a festival zone/group containing multiple components."];
+}

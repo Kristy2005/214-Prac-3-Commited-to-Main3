@@ -1,0 +1,120 @@
+\hypertarget{classSubject}{}\doxysection{Subject Class Reference}
+\label{classSubject}\index{Subject@{Subject}}
+
+
+Abstract \mbox{\hyperlink{classSubject}{Subject}} base class managing observer registrations and notifications.  
+
+
+
+
+{\ttfamily \#include $<$Subject.\+h$>$}
+
+
+
+Inheritance diagram for Subject\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classSubject_a7c4f522850f718466e5be7eb55ba1969}{$\sim$\+Subject}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure polymorphic cleanup. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSubject_a0884bfe374d352c6488a1e40c84246c8}{attach}} (\mbox{\hyperlink{classObserver}{Observer}} $\ast$observer)
+\begin{DoxyCompactList}\small\item\em Registers an existing observer for updates. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSubject_a752a7596d52ab986539232f8377ca92c}{detach}} (\mbox{\hyperlink{classObserver}{Observer}} $\ast$observer)
+\begin{DoxyCompactList}\small\item\em Deregisters an observer. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSubject_a3dee8c149e7f10c37213050cdc86d52b}{notify}} (const \mbox{\hyperlink{classNotice}{Notice}} \&notice)=0
+\begin{DoxyCompactList}\small\item\em Broadcasts a notice to all currently registered observers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classObserver}{Observer}} $\ast$ $>$ \mbox{\hyperlink{classSubject_a39d24e695db0a792799b351dbebde992}{observers}}
+\begin{DoxyCompactList}\small\item\em List of registered non-\/owning observer pointers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract \mbox{\hyperlink{classSubject}{Subject}} base class managing observer registrations and notifications. 
+
+GoF Role\+: \mbox{\hyperlink{classSubject}{Subject}}. Ownership policy\+: Stores non-\/owning pointers in {\ttfamily observers}. Does not delete observers upon detachment or destruction, allowing observers to exist independently within the Composite structure. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSubject_a7c4f522850f718466e5be7eb55ba1969}\label{classSubject_a7c4f522850f718466e5be7eb55ba1969}} 
+\index{Subject@{Subject}!````~Subject@{$\sim$Subject}}
+\index{````~Subject@{$\sim$Subject}!Subject@{Subject}}
+\doxysubsubsection{\texorpdfstring{$\sim$Subject()}{~Subject()}}
+{\footnotesize\ttfamily Subject\+::$\sim$\+Subject (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Virtual destructor to ensure polymorphic cleanup. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSubject_a0884bfe374d352c6488a1e40c84246c8}\label{classSubject_a0884bfe374d352c6488a1e40c84246c8}} 
+\index{Subject@{Subject}!attach@{attach}}
+\index{attach@{attach}!Subject@{Subject}}
+\doxysubsubsection{\texorpdfstring{attach()}{attach()}}
+{\footnotesize\ttfamily void Subject\+::attach (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classObserver}{Observer}} $\ast$}]{observer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Registers an existing observer for updates. 
+
+Prevents nullptr registration and duplicate additions. 
+\begin{DoxyParams}{Parameters}
+{\em observer} & Non-\/owning pointer to the observer to attach. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSubject_a752a7596d52ab986539232f8377ca92c}\label{classSubject_a752a7596d52ab986539232f8377ca92c}} 
+\index{Subject@{Subject}!detach@{detach}}
+\index{detach@{detach}!Subject@{Subject}}
+\doxysubsubsection{\texorpdfstring{detach()}{detach()}}
+{\footnotesize\ttfamily void Subject\+::detach (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classObserver}{Observer}} $\ast$}]{observer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Deregisters an observer. 
+
+Safely ignores requests to detach an unregistered observer. 
+\begin{DoxyParams}{Parameters}
+{\em observer} & Non-\/owning pointer to the observer to remove. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSubject_a3dee8c149e7f10c37213050cdc86d52b}\label{classSubject_a3dee8c149e7f10c37213050cdc86d52b}} 
+\index{Subject@{Subject}!notify@{notify}}
+\index{notify@{notify}!Subject@{Subject}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily virtual void Subject\+::notify (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNotice}{Notice}} \&}]{notice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Broadcasts a notice to all currently registered observers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em notice} & Push-\/notification data payload passed to observers. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classEventGroup_a8ed1f63d6549def10a3050457be8bccc}{Event\+Group}}, and \mbox{\hyperlink{classEventControl_ad58e12a841d8f06cc17b8b0d8da1000b}{Event\+Control}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSubject_a39d24e695db0a792799b351dbebde992}\label{classSubject_a39d24e695db0a792799b351dbebde992}} 
+\index{Subject@{Subject}!observers@{observers}}
+\index{observers@{observers}!Subject@{Subject}}
+\doxysubsubsection{\texorpdfstring{observers}{observers}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classObserver}{Observer}}$\ast$$>$ Subject\+::observers\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+List of registered non-\/owning observer pointers. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Subject_8h}{Subject.\+h}}\item 
+src/\mbox{\hyperlink{Subject_8cpp}{Subject.\+cpp}}\end{DoxyCompactItemize}
