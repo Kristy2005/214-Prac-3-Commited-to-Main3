@@ -20,6 +20,11 @@ class Notice;
  * Ownership policy: Stores non-owning pointers in `observers`. Does not delete observers 
  * upon detachment or destruction, allowing observers to exist independently within 
  * the Composite structure.
+ * DESIGN DECISION: The combination of the Composite design pattern as well as the Observer design pattern 
+ * creates a conflict when it comes to memory ownership and deallocation at runtime 
+ * The Subject participant has a non-owning std::vector<Observer*> because the Composite design pattern owns each 
+ * and every leaf component that is created at runtime, therefore it manages the deallocation of that memory as each Concrete leaf
+ * component is a multiple inheritance of both the Observer and EventComponent class, but not every single Concrete leaf component is an observer
  */
 class Subject {
 protected:

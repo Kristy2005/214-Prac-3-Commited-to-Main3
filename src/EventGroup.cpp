@@ -14,6 +14,11 @@ void EventGroup::add(EventComponent* child) {
 	}
 
 	this->children.push_back(child);
+	//CHECKING IF CHILD IS ALSO AN OBSERVER 
+	Observer* er = dynamic_cast<Observer*>(child);
+	if(er != nullptr){
+		this->attach(er);
+	}
 }
 
 
@@ -25,6 +30,12 @@ EventComponent* EventGroup::remove(EventComponent* child) {
 		if(*it == child){
 			EventComponent* removed = *it;
 			this->children.erase(it);
+
+			//CHEICKING IF CHILD IS ALSO AN OBSERVER
+			Observer* er = dynamic_cast<Observer*>(removed);
+			if(er != nullptr){
+				this->detach(er);
+			}
 			return removed;
 		}else{
 			++it;

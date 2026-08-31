@@ -17,28 +17,40 @@ class Notice;
  * 
  * @details 
  * GoF Role: ConcreteObserver (Observer Pattern) / Leaf (Composite Pattern).
- * Controls beverage distribution and reacts to schedule changes or festival closure notices[cite: 1].
+ * 
+ * Controls beverage distribution, monitors active stock levels, and reacts 
+ * dynamically to schedule changes or emergency closure notices.
+ * 
+ * DESIGN DECISION: Multi-State Notice Reaction Protocol
+ * Bar encapsulates fine-grained operational states (serving, lastCall, busy) beyond simple 
+ * binary open/close states. Upon receiving Subject notifications (Notice payload), the Bar can 
+ * transition to an intermediate last-call mode before total shutdown, guaranteeing orderly attendee 
+ * dispersal without abrupt service termination.
  */
 class Bar : public EventUnit {
 private:
-    bool serving;
-    bool lastCall;
-    int drinkStock;
-    bool busy;
-
+    bool serving;     /**< Flag indicating if the bar is actively serving beverages. */
+    bool lastCall;    /**< Flag indicating if last-call restrictions are currently in effect. */
+    int drinkStock;   /**< Current inventory count of available beverages. */
+    bool busy;        /**< State flag indicating high-density customer activity. */
+   
 public:
-    virtual ~Bar();
     /**
-     * @brief Constructs a Bar instance with initial inventory stock.
-     * @param name Descriptive identifier for the bar unit.
+     * @brief Constructs a Bar instance with a name and initial drink stock.
+     * @param name Descriptive identifier for the bar unit (e.g., "Main Stage Bar").
      * @param drinkStock Total initial units of drink inventory.
      */
     Bar(std::string name, int drinkStock);
 
-
+    /**
+     * @brief Virtual destructor ensuring clean polymorphic cleanup.
+     */
+    virtual ~Bar();
+   
     /**
      * @brief Serves a beverage to a customer if stock is available and serving is enabled.
-     * @return True if drink was served successfully, false otherwise.
+     * @return True if a drink was served successfully, false if out of stock or closed.
+     * @return True if a drink was served successfully, false if out of stock or closed.
      */
     bool serveDrink();
 
@@ -59,4 +71,5 @@ public:
      */
     void update(const Notice& notice) override;
 };
-#endif
+
+#endif // BAR_H

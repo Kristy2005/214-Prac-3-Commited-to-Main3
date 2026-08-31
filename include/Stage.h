@@ -17,15 +17,22 @@ class Notice;
  * 
  * @details 
  * GoF Role: ConcreteObserver (Observer Pattern) / Leaf (Composite Pattern).
+ * 
  * Represents active music/performance stages across festival zones.
- * Responds to operational, capacity, and safety notifications (e.g., PAUSE, RESUME, WEATHER_ALERT, EVACUATE).
+ * Responds to operational, capacity, and safety notifications (e.g., PAUSE, RESUME, 
+ * WEATHER_ALERT, EVACUATE).
+ * 
+ * DESIGN DECISION: Selective Notification Filtering
+ * Stage uses its internal attributes (`outdoor` and `nearWater`) during update() 
+ * dispatches to conditionally ignore environmental notices that do not affect 
+ * indoor or landlocked performance stages, keeping response logic localized.
  */
 class Stage : public EventUnit {
 private:
-    bool outdoor;
-    bool performancePaused;
-    std::string genre;
-    bool nearWater;
+    bool outdoor;            /**< Flag indicating if the stage is exposed to weather elements. */
+    bool performancePaused;  /**< Tracks active playback/performance state. */
+    std::string genre;       /**< Music or performance style assigned to this stage. */
+    bool nearWater;          /**< Flag for proximity to aquatic festival hazards. */
 
 public:
     /**
@@ -38,6 +45,10 @@ public:
      */
     Stage(std::string name, int capacity, bool outdoor, std::string genre, bool nearWater);
 
+    /**
+     * @brief Virtual destructor ensuring clean polymorphic destruction.
+     */
+    virtual ~Stage();
 
     /**
      * @brief Receives event updates pushed from a Subject and executes stage behavior.
@@ -56,4 +67,4 @@ public:
     void resumePerformance();
 };
 
-#endif
+#endif // STAGE_H

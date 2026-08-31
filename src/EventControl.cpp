@@ -13,6 +13,6 @@ void EventControl::notify(const Notice& notice) {
 	}
 }
 
-EventControl::EventControl(std::string eventName)
-    : eventName(eventName){}
-EventControl::~EventControl() {}
+EventControl::EventControl(std::string eventName): eventName(eventName){}
+
+EventControl::~EventControl(){}

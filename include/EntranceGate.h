@@ -17,33 +17,43 @@ class Notice;
  * 
  * @details 
  * GoF Role: ConcreteObserver (Observer Pattern) / Leaf (Composite Pattern).
- * Controls access at venue boundaries and halts admissions during closure or evacuation notices[cite: 1].
+ * 
+ * Controls access at venue boundaries and halts admissions during closure or evacuation notices.
+ * 
+ * DESIGN DECISION: Perimeter Boundary Invariant Enforcement
+ * EntranceGate acts as the primary perimeter defense. It encapsulates both operational status 
+ * (admitting state driven by Subject notification broadcasts) and domain-specific access policies 
+ * (minimum age verification) at the outermost Composite Leaf boundary.
  */
 class EntranceGate : public EventUnit {
 private:
-    int minimumAge;
-    bool admitting;
+    int minimumAge;  /**< Minimum required age threshold for attendee entry verification. */
+    bool admitting;  /**< Operational state flag indicating if turnstiles are actively accepting entry. */
 
 public:
     /**
      * @brief Constructs an EntranceGate instance.
-     * @param name Name or label of the gate.
+     * @param name Descriptive label or location of the gate (e.g., "North Gate").
      * @param minimumAge Minimum age required for attendee entry (default: 18).
      */
     EntranceGate(std::string name, int minimumAge = 18);
 
+    /**
+     * @brief Virtual destructor ensuring clean polymorphic deallocation.
+     */
+    virtual ~EntranceGate();
 
     /**
      * @brief Verifies whether an attendee satisfies age requirements.
      * @param age Age of the attendee requesting entry.
      * @return True if attendee meets or exceeds minimum age, false otherwise.
      */
-    bool checkID(int age)const;
+    bool checkID(int age) const;
 
     /**
      * @brief Processes an attendee entry attempt based on gate state and age criteria.
      * @param age Age of the attendee requesting entry.
-     * @return True if access is granted, false if access is denied or gate is closed.
+     * @return True if access is granted and gate is active, false if access is denied or gate is closed.
      */
     bool admitAttendee(int age);
 
@@ -52,8 +62,6 @@ public:
      * @param notice Reference to the Notice payload.
      */
     void update(const Notice& notice) override;
-
-    ~EntranceGate();
 };
 
-#endif
+#endif // ENTRANCEGATE_H

@@ -17,27 +17,37 @@ class Notice;
  * 
  * @details 
  * GoF Role: ConcreteObserver (Observer Pattern) / Leaf (Composite Pattern).
- * Reacts to opening, closing, and emergency evacuation notices across festival zones[cite: 1].
+ * 
+ * Manages food portion sales and inventory replenishment. Listens for festival notifications 
+ * to halt operations during evacuations or zone closures, and resume service upon notification.
+ * 
+ * DESIGN DECISION: Automated Operational State Control
+ * Upon receiving EVACUATE, CLOSE, or WEATHER_ALERT notices, FoodVendor automatically updates 
+ * its 'serving' state flag to false, rejecting subsequent serveFood() calls until an OPEN or 
+ * RESUME notice is dispatched.
  */
 class FoodVendor : public EventUnit {
 private:
-    bool serving;
-    int stockLevel;
-    bool busy;
+    bool serving;   /**< Flag indicating whether the vendor is actively open and serving customers. */
+    int stockLevel; /**< Current quantity of available food portions in inventory. */
+    bool busy;      /**< Operational status flag indicating high customer queue volume. */
 
 public:
+    /**
+     * @brief Virtual destructor ensuring clean polymorphic cleanup.
+     */
     virtual ~FoodVendor();
+
     /**
      * @brief Constructs a FoodVendor instance.
-     * @param name Name of the food stall or truck.
+     * @param name Name or designation of the food stall or truck.
      * @param stockLevel Initial available food portions in stock.
      */
     FoodVendor(std::string name, int stockLevel);
 
-   
     /**
-     * @brief Serves a food order if vendor is active and stock is available.
-     * @return True if order was filled, false if out of stock or closed.
+     * @brief Serves a food order if the vendor is active and stock is available.
+     * @return True if order was filled and stock decremented, false if out of stock or closed.
      */
     bool serveFood();
 
@@ -54,4 +64,4 @@ public:
     void update(const Notice& notice) override;
 };
 
-#endif
+#endif // FOODVENDOR_H

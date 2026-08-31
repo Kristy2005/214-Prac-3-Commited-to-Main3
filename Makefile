@@ -1,12 +1,12 @@
 CXX      = g++
 CXXFLAGS = -std=c++11 -Wall -Wextra -Iinclude -Isrc
-
-COVFLAGS = -std=c++11 -Wall -Wextra -Iinclude -Isrc --coverage -fprofile-arcs -ftest-coverage -O0
+COVFLAGS = $(CXXFLAGS) --coverage -fprofile-arcs -ftest-coverage -O0
 
 TARGET     = eventflow
-COV_TARGET = eventflow_cov
+COV_DIR    = coverage
+COV_TARGET = $(COV_DIR)/eventflow_cov
 
-SRCS = src/main.cpp \
+SRCS = main.cpp \
        src/Subject.cpp \
        src/Observer.cpp \
        src/EventComponent.cpp \
@@ -23,7 +23,6 @@ SRCS = src/main.cpp \
        src/MedicalTeam.cpp
 
 OBJS     = $(SRCS:.cpp=.o)
-COV_DIR  = cov_build
 COV_OBJS = $(addprefix $(COV_DIR)/,$(SRCS:.cpp=.o))
 
 # ──────────────────────────────────────────
@@ -57,13 +56,13 @@ valgrind: $(TARGET)
 		./$(TARGET)
 
 # ──────────────────────────────────────────
-# Coverage build + terminal summary
+# Coverage build + HTML Report
 #   make coverage
 # ──────────────────────────────────────────
-$(COV_DIR):
+$(COV_DIR)/src:
 	mkdir -p $(COV_DIR)/src
 
-$(COV_DIR)/%.o: %.cpp | $(COV_DIR)
+$(COV_DIR)/%.o: %.cpp | $(COV_DIR)/src
 	$(CXX) $(COVFLAGS) -c $< -o $@
 
 $(COV_TARGET): $(COV_OBJS)
@@ -71,27 +70,31 @@ $(COV_TARGET): $(COV_OBJS)
 
 coverage: $(COV_TARGET)
 	./$(COV_TARGET)
-	gcov --object-directory $(COV_DIR)/src $(SRCS)
+	lcov --capture --directory $(COV_DIR) --output-file $(COV_DIR)/coverage.info --rc lcov_branch_coverage=1
+	lcov --remove $(COV_DIR)/coverage.info '/usr/*' --output-file $(COV_DIR)/coverage.info
+	genhtml $(COV_DIR)/coverage.info --output-directory $(COV_DIR) --branch-coverage
+	@echo "----------------------------------------------------"
+	@echo "Coverage report ready: open $(COV_DIR)/index.html"
+	@echo "----------------------------------------------------"
+
+coverage-html: coverage
 
 # ──────────────────────────────────────────
-# Coverage HTML report (requires lcov)
-#   make coverage-html
+# Generate Doxygen Documentation
+#   make doc
 # ──────────────────────────────────────────
-coverage-html: $(COV_TARGET)
-	./$(COV_TARGET)
-	lcov --capture --directory $(COV_DIR) --output-file coverage.info \
-		--rc lcov_branch_coverage=1
-	lcov --remove coverage.info '/usr/*' --output-file coverage.info
-	genhtml coverage.info --output-directory coverage --branch-coverage
-	@echo "Report ready: open coverage/index.html"
+doc:
+	doxygen Doxyfile
+	@echo "----------------------------------------------------"
+	@echo "Documentation generated: open docs/html/index.html"
+	@echo "----------------------------------------------------"
 
 # ──────────────────────────────────────────
 # Clean
 # ──────────────────────────────────────────
 clean:
-	rm -f $(OBJS) $(TARGET) $(COV_TARGET)
+	rm -f $(OBJS) $(TARGET)
 	rm -rf $(COV_DIR)
-	rm -f *.gcov coverage.info
-	rm -rf coverage/
+	rm -rf docs/html docs/latex
 
-.PHONY: all run valgrind coverage coverage-html clean
+.PHONY: all run valgrind coverage coverage-html doc clean
