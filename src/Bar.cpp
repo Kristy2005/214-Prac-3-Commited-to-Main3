@@ -31,6 +31,7 @@ void Bar::update(const Notice& notice){
 
     if (notice.getType() == NoticeType::OPEN){
         isOpen = true;
+        serving = true;
         lastCall = false;
         std::cout << name << " bar is open" << std::endl;
     }
@@ -49,6 +50,7 @@ void Bar::update(const Notice& notice){
 
     if (notice.getType() == NoticeType::RESUME){
         isOpen = true;
+        serving = true;
         std::cout << name << " bar resumes service" << std::endl;
     }
 

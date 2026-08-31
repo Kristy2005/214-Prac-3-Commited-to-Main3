@@ -35,6 +35,7 @@ private:
     bool busy;        /**< State flag indicating high-density customer activity. */
 
 public:
+    virtual ~Bar();
     /**
      * @brief Constructs a Bar instance with a name and initial drink stock.
      * @param name Descriptive identifier for the bar unit (e.g., "Main Stage Bar").
@@ -70,5 +71,4 @@ public:
      */
     void update(const Notice& notice) override;
 };
-
-#endif // BAR_H
+#endif
