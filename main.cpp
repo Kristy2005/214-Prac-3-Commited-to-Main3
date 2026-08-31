@@ -251,6 +251,31 @@ int main()
     riverStageArea->attach(riverBar);
     logTestResult("Dynamic Observer Unhook & Re-attachment", true);
 
+    cout << BLUE << "\n------------------------------------------" << RESET << endl;
+    cout << MAGENTA << ">>> SD4 Signature Event Scenario Execution" << RESET << endl;
+    cout << BLUE << "------------------------------------------" << RESET << endl;
+
+    EventGroup* overflowZone = new EventGroup("Overflow Zone");
+    Stage* secondaryStage = new Stage("Secondary Stage", 150, true, "Pop", true);
+
+    // 2. Step 1 of SD4: Issue PAUSE notice
+    Notice pauseNotice1(NoticeType::PAUSE, "Emergency Pause", "ALL", 0);
+    eventControl->issueNotice(pauseNotice1); 
+
+    // 3. Step 2 & 3: reorganisation 
+    riverZone->detach(riverStage);
+    overflowZone->add(secondaryStage);
+
+    // 4. Step 4: Attach new composite observer
+    eventControl->attach(overflowZone);
+
+    // 5. Step 5: Issue RESUME notice
+    Notice resumeNotice1(NoticeType::RESUME, "Resume Operations", "ALL", 0);
+    eventControl->issueNotice(resumeNotice1);
+
+    logTestResult("SD4 Signature Scenario Traceability", true);
+    // ============================================================
+
     // ------------------------------------------------------------
     // Step 9: Code Coverage Boost Suite (LCOV Line & Branch Expansion)
     // ------------------------------------------------------------
