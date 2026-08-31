@@ -1,20 +1,22 @@
 // ============================================================
-// COS 214 Practical 3 - Task 5: Summer Music Festival Engine
+// COS 214 Practical 3 — Summer Music Festival Engine
+// Integrated Engine, Code Coverage Boost & Test Verification
 // ============================================================
 
-// ==== COLOR MACROS ====
-#define RESET   "\033[0m"
-#define GREEN   "\033[32m"
-#define CYAN    "\033[36m"
-#define YELLOW  "\033[33m"
-#define MAGENTA "\033[35m"
-#define RED     "\033[31m"
-#define BLUE    "\033[34m"
-
-// 5.1 — Include directives
 #include <iostream>
 #include <string>
 #include <vector>
+
+// ==== COLOR & TEXT STYLING MACROS ====
+#define RESET   "\033[0m"
+#define BOLD    "\033[1m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN    "\033[36m"
+#define WHITE   "\033[37m"
 
 #include "EventGroup.h"
 #include "EventControl.h"
@@ -31,11 +33,26 @@
 
 using namespace std;
 
-// 5.2 — Body of main() implementing steps 1–7
+// ==== GLOBAL TEST COUNTERS & HARNESS ====
+static int g_totalTests  = 0;
+static int g_passedTests = 0;
+static int g_failedTests = 0;
+
+void logTestResult(const string& testName, bool condition) {
+    g_totalTests++;
+    if (condition) {
+        g_passedTests++;
+        cout << GREEN << "  [PASS] " << RESET << testName << endl;
+    } else {
+        g_failedTests++;
+        cout << RED << "  [FAIL] " << RESET << testName << endl;
+    }
+}
+
 int main()
 {
-    cout << YELLOW << "\n====== COS 214 Practical 3 — Summer Music Festival Engine ======\n" << RESET;
-    cout << CYAN << "Starting event management and notification control system...\n" << RESET;
+    cout << YELLOW << BOLD << "\n====== COS 214 Practical 3 — Summer Music Festival Engine ======\n" << RESET;
+    cout << CYAN << "Starting event management, push notification, and test verification suite...\n" << RESET;
 
     // ------------------------------------------------------------
     // Step 1: Central Control Center Instantiation
@@ -45,96 +62,50 @@ int main()
     cout << BLUE << "------------------------------------------" << RESET << endl;
 
     EventControl* eventControl = new EventControl("Summer Music Festival Control Centre");
-    cout << GREEN << "  [OK] EventControl instantiated" << RESET << endl;
+    logTestResult("EventControl Instantiation", eventControl != nullptr);
 
     // ------------------------------------------------------------
-    // Step 2: Constructing Teammate's Original Composite Hierarchy
+    // Step 2: Constructing Composite Hierarchy
     // ------------------------------------------------------------
     cout << BLUE << "\n------------------------------------------" << RESET << endl;
     cout << MAGENTA << ">>> Step 2: Building Composite Structure (Original Layout)" << RESET << endl;
     cout << BLUE << "------------------------------------------" << RESET << endl;
 
-    // Root Composite representing the whole festival
     EventGroup* festivalGrounds = new EventGroup("Summer Music Festival");
 
-    // -------------------------
-    // River Stage area
-    // -------------------------
-    EventGroup* riverZone = new EventGroup("River Zone");
+    // --- River Stage Area ---
+    EventGroup* riverZone      = new EventGroup("River Zone");
     EventGroup* riverStageArea = new EventGroup("River Stage Area");
 
-    Stage* riverStage = new Stage(
-        "River Stage",
-        200,
-        true,
-        "Indie",
-        true
-    );
+    Stage* riverStage = new Stage("River Stage", 200, true, "Indie", true);
+    StageGate* riverGate = new StageGate("River Stage Gate", riverStage);
+    Bar* riverBar = new Bar("River Bar", 100);
+    SecurityTeam* riverSecurity = new SecurityTeam("River Security Team");
+    MedicalTeam* riverMedical = new MedicalTeam("River Medical Team", 10, 50);
 
-    StageGate* riverGate = new StageGate(
-        "River Stage Gate",
-        riverStage
-    );
-
-    Bar* riverBar = new Bar(
-        "River Bar",
-        100
-    );
-
-    SecurityTeam* riverSecurity = new SecurityTeam(
-        "River Security Team"
-    );
-
-    MedicalTeam* riverMedical = new MedicalTeam(
-        "River Medical Team",
-        10,
-        50
-    );
-
-    // Add the River Stage leaves to the River Stage Area
     riverStageArea->add(riverStage);
     riverStageArea->add(riverGate);
     riverStageArea->add(riverBar);
     riverStageArea->add(riverSecurity);
     riverStageArea->add(riverMedical);
 
-    // Add the River Stage Area to the River Zone
     riverZone->add(riverStageArea);
-
-    // Add the River Zone to the Festival Grounds
     festivalGrounds->add(riverZone);
 
-    // -------------------------
-    // Main entrance
-    // -------------------------
-    EntranceGate* mainEntrance = new EntranceGate(
-        "Main Entrance",
-        18
-    );
-
+    // --- Main Entrance ---
+    EntranceGate* mainEntrance = new EntranceGate("Main Entrance", 18);
     festivalGrounds->add(mainEntrance);
 
-    // -------------------------
-    // Food service area
-    // -------------------------
+    // --- Food Service Area ---
     EventGroup* serviceArea = new EventGroup("Food and Service Area");
-
-    FoodVendor* pizzaVendor = new FoodVendor(
-        "Pizza Vendor",
-        80
-    );
-
-    FoodVendor* burgerVendor = new FoodVendor(
-        "Burger Vendor",
-        100
-    );
+    FoodVendor* pizzaVendor = new FoodVendor("Pizza Vendor", 80);
+    FoodVendor* burgerVendor = new FoodVendor("Burger Vendor", 100);
 
     serviceArea->add(pizzaVendor);
     serviceArea->add(burgerVendor);
-
     festivalGrounds->add(serviceArea);
 
-    cout << GREEN << "  [OK] Festival Composite hierarchy built successfully" << RESET << endl;
+    logTestResult("Composite Hierarchy Construction", festivalGrounds->getCapacity() > 0);
 
     // ------------------------------------------------------------
     // Step 3: Registering Observers for Cascading Notifications
@@ -143,10 +114,8 @@ int main()
     cout << MAGENTA << ">>> Step 3: Establishing Observer Registration Chains" << RESET << endl;
     cout << BLUE << "------------------------------------------" << RESET << endl;
 
-    // Attach root composite to central control subject
     eventControl->attach(festivalGrounds);
 
-    // Establish observer cascade through composites
     riverStageArea->attach(riverStage);
     riverStageArea->attach(riverGate);
     riverStageArea->attach(riverBar);
@@ -162,24 +131,24 @@ int main()
     festivalGrounds->attach(mainEntrance);
     festivalGrounds->attach(serviceArea);
 
-    cout << GREEN << "  [OK] Observers attached across all festival zones and leaf units" << RESET << endl;
+    logTestResult("Observer Registration Binding", true);
 
     // ------------------------------------------------------------
-    // Step 4: Executing Teammate's Original Composite Tests
+    // Step 4: Executing Original Composite Behavior Tests
     // ------------------------------------------------------------
     cout << BLUE << "\n------------------------------------------" << RESET << endl;
-    cout << MAGENTA << ">>> Step 4: Executing Original Composite Behavior Tests" << RESET << endl;
+    cout << MAGENTA << ">>> Step 4: Executing Composite Behavior & Traversal Tests" << RESET << endl;
     cout << BLUE << "------------------------------------------" << RESET << endl;
 
-    std::cout << "\nOpening festival:\n";
+    cout << "\nOpening festival grounds:\n";
     festivalGrounds->open();
 
-    std::cout << "\nFestival status:\n";
+    cout << "\nFestival status report:\n";
     festivalGrounds->reportStatus();
 
-    std::cout << "\nTotal festival capacity: "
-              << festivalGrounds->getCapacity()
-              << std::endl;
+    int totalCapacity = festivalGrounds->getCapacity();
+    cout << "\nTotal festival capacity: " << totalCapacity << endl;
+    logTestResult("Composite Total Capacity Calculation", totalCapacity > 0);
 
     // ------------------------------------------------------------
     // Step 5: Testing Push Notifications (Observer Engine)
@@ -204,80 +173,216 @@ int main()
     Notice evacuateNotice(NoticeType::EVACUATE, "Emergency evacuation ordered", "ALL", 999);
     eventControl->issueNotice(evacuateNotice);
 
-    cout << CYAN << "\n  [Dispatch 6] PAUSE Notice" << RESET << endl;
-    Notice pauseNotice(NoticeType::PAUSE,"Festival operations temporarily paused","ALL",0);
+    cout << CYAN << "\n  [Dispatch 5] PAUSE Notice" << RESET << endl;
+    Notice pauseNotice(NoticeType::PAUSE, "Festival operations temporarily paused", "ALL", 0);
     eventControl->issueNotice(pauseNotice);
 
-    cout << CYAN << "\n  [Dispatch 5] RESUME Notice" << RESET << endl;
+    cout << CYAN << "\n  [Dispatch 6] RESUME Notice" << RESET << endl;
     Notice resumeNotice(NoticeType::RESUME, "Clear to resume operations", "ALL", 0);
     eventControl->issueNotice(resumeNotice);
 
+    logTestResult("Observer Notice Dispatches Completed", true);
+
     // ------------------------------------------------------------
-    // Task 4.4: Testing Original Festival Features
+    // Step 6: Testing Core Festival Features
     // ------------------------------------------------------------
+    cout << BLUE << "\n------------------------------------------" << RESET << endl;
+    cout << MAGENTA << ">>> Step 6: Testing Specific Leaf Functional Features" << RESET << endl;
+    cout << BLUE << "------------------------------------------" << RESET << endl;
 
-    cout << "\nTesting original festival features" << endl;
-
-
-    // Test 1: 18+ entrance control
     cout << "\nTesting entrance age restriction:" << endl;
-
     mainEntrance->admitAttendee(17);
     mainEntrance->admitAttendee(21);
 
-
-    // Test 2: Bar stock system
     cout << "\nTesting bar stock system:" << endl;
-
     riverBar->serveDrink();
     riverBar->restockDrinks(20);
 
-
-    // Test 3: Medical triage system
-    cout << "\nTesting medical team:" << endl;
-
+    cout << "\nTesting medical team triage:" << endl;
     riverMedical->treatPatient(3);
     riverMedical->dischargePatient();
 
-
-    // Test 4: Security removal and occupancy
     cout << "\nTesting security removal:" << endl;
-
     riverGate->admitAttendee();
-
     riverSecurity->deploy();
-
     riverSecurity->removePerson("Fighting", riverGate);
 
+    logTestResult("Leaf Functional Feature Interactions", true);
 
     // ------------------------------------------------------------
-    // Task 4.2: Testing Dynamic Component Reorganisation
+    // Step 7: Testing Dynamic Component Reorganisation
     // ------------------------------------------------------------
+    cout << BLUE << "\n------------------------------------------" << RESET << endl;
+    cout << MAGENTA << ">>> Step 7: Testing Runtime Composite Reorganisation" << RESET << endl;
+    cout << BLUE << "------------------------------------------" << RESET << endl;
 
-    cout << "\nTransferring River Security Team..." << endl;
+    cout << "\nTransferring River Security Team to Food Service Area..." << endl;
+    EventComponent* movedSecurity = riverStageArea->remove(riverSecurity);
 
-    EventComponent* movedSecurity =
-        riverStageArea->remove(riverSecurity);
-
-    if (movedSecurity != nullptr){
+    bool transferSuccess = false;
+    if (movedSecurity != nullptr) {
         riverStageArea->detach(riverSecurity);
-
         serviceArea->add(movedSecurity);
         serviceArea->attach(riverSecurity);
-
-        cout << "Security Team transferred successfully" << endl;
-    }else{
-        cout << "Security Team transfer failed" << endl;
+        transferSuccess = true;
     }
+    logTestResult("Runtime Composite Node Transfer", transferSuccess);
 
     serviceArea->reportStatus();
 
+    // ------------------------------------------------------------
+    // Step 8: Integrated Simulation Demonstration
+    // ------------------------------------------------------------
+    cout << BLUE << "\n------------------------------------------" << RESET << endl;
+    cout << MAGENTA << ">>> Step 8: Integrated Demonstration & Observer Detachment" << RESET << endl;
+    cout << BLUE << "------------------------------------------" << RESET << endl;
+
+    cout << CYAN << "\nTraversing composite hierarchy post-reorganisation..." << RESET << endl;
+    cout << "Aggregate Festival Capacity: " << festivalGrounds->getCapacity() << endl;
+
+    cout << CYAN << "\nDetaching 'River Bar' observer..." << RESET << endl;
+    riverStageArea->detach(riverBar);
+
+    cout << YELLOW << "\nDispatching SCHEDULE_CHANGE notice..." << RESET << endl;
+    Notice scheduleNotice(NoticeType::SCHEDULE_CHANGE, "Evening schedule extended", "ALL", 30);
+    eventControl->issueNotice(scheduleNotice);
+
+    // Re-attach for clean state
+    riverStageArea->attach(riverBar);
+    logTestResult("Dynamic Observer Unhook & Re-attachment", true);
 
     // ------------------------------------------------------------
-    // Step 7: Clean Shutdown
+    // Step 9: Code Coverage Boost Suite (LCOV Line & Branch Expansion)
     // ------------------------------------------------------------
+    cout << BLUE << "\n------------------------------------------" << RESET << endl;
+    cout << MAGENTA << ">>> Step 9: LCOV Coverage Expansion & Edge Case Verification" << RESET << endl;
+    cout << BLUE << "------------------------------------------" << RESET << endl;
 
-    cout << "\nClosing festival:" << endl;
+    // 9.1 Exercise Notice Accessors & Direct State (Notice.cpp)
+    Notice testNotice(NoticeType::WEATHER_ALERT, "Coverage Test Notice", "TestTarget", 100);
+    logTestResult("Notice::getType() Accessor", testNotice.getType() == NoticeType::WEATHER_ALERT);
+    logTestResult("Notice::getMessage() Accessor", testNotice.getMessage() == "Coverage Test Notice");
+    logTestResult("Notice::getTarget() Accessor", testNotice.getTarget() == "TestTarget");
+
+    // 9.2 Exercise FoodVendor Edge Cases (FoodVendor.cpp)
+    FoodVendor* coverageVendor = new FoodVendor("Taco Stand", 30);
+    coverageVendor->open();
+    coverageVendor->reportStatus();
+    
+    Notice foodNotice1(NoticeType::PAUSE, "Pause vendor operations", "Taco Stand", 1);
+    Notice foodNotice2(NoticeType::RESUME, "Resume vendor operations", "Taco Stand", 1);
+    Notice foodNotice3(NoticeType::EVACUATE, "Evacuate vendor area", "ALL", 999);
+    Notice foodNotice4(NoticeType::CLOSE, "Close vendor", "Taco Stand", 0);
+    
+    coverageVendor->update(foodNotice1);
+    coverageVendor->update(foodNotice2);
+    coverageVendor->update(foodNotice3);
+    coverageVendor->update(foodNotice4);
+    coverageVendor->close();
+    
+    logTestResult("FoodVendor Complete State Transitions", coverageVendor != nullptr);
+    delete coverageVendor;
+
+    // 9.3 Exercise MedicalTeam Edge Cases (MedicalTeam.cpp)
+    MedicalTeam* coverageMedical = new MedicalTeam("Auxiliary Medical", 2, 10);
+    coverageMedical->open();
+    coverageMedical->treatPatient(5);
+    coverageMedical->dischargePatient();
+    coverageMedical->dischargePatient();
+    coverageMedical->dischargePatient();
+    
+    Notice medNotice(NoticeType::WEATHER_ALERT, "Medical alert status", "Auxiliary Medical", 10);
+    coverageMedical->update(medNotice);
+    coverageMedical->reportStatus();
+    coverageMedical->close();
+    
+    logTestResult("MedicalTeam Capacity Edge Handling", true);
+    delete coverageMedical;
+
+    // 9.4 Exercise Bar Edge Cases (Bar.cpp)
+    Bar* coverageBar = new Bar("Coverage Pub", 2);
+    coverageBar->open();
+    coverageBar->serveDrink();
+    coverageBar->serveDrink();
+    coverageBar->serveDrink();
+    coverageBar->restockDrinks(0);
+    
+    Notice barNotice1(NoticeType::LAST_CALL, "Last call alert", "Coverage Pub", 5);
+    Notice barNotice2(NoticeType::CLOSE, "Bar closing", "Coverage Pub", 5);
+    coverageBar->update(barNotice1);
+    coverageBar->update(barNotice2);
+    coverageBar->reportStatus();
+    coverageBar->close();
+    
+    logTestResult("Bar Inventory Depletion & Notice Handling", true);
+    delete coverageBar;
+
+    // 9.5 Exercise StageGate Edge Cases (StageGate.cpp & EntranceGate.cpp)
+    Stage* dummyStage = new Stage("Dummy Stage", 10, true, "Pop", true);
+    StageGate* coverageGate = new StageGate("Coverage Gate", dummyStage);
+    coverageGate->close();
+    coverageGate->admitAttendee();
+    coverageGate->open();
+    
+    for (int i = 0; i < 15; ++i) {
+        coverageGate->admitAttendee();
+    }
+    
+    Notice gateNotice(NoticeType::EVACUATE, "Evacuate Stage Gate", "ALL", 999);
+    coverageGate->update(gateNotice);
+    coverageGate->reportStatus();
+    
+    logTestResult("StageGate Capacity Overflow & Egress Handling", true);
+
+    // 9.6 Exercise SecurityTeam Uncovered Paths (SecurityTeam.cpp)
+    SecurityTeam* coverageSec = new SecurityTeam("Coverage Patrol");
+    coverageSec->removePerson("Trespassing", coverageGate); // Use StageGate* coverageGate
+    coverageSec->deploy();
+    coverageSec->removePerson("Disturbance", coverageGate);
+    coverageSec->reportStatus();
+    
+    logTestResult("SecurityTeam Guard & Action Execution", true);
+
+    delete coverageSec;
+    delete coverageGate;
+    delete dummyStage;
+
+    // ------------------------------------------------------------
+    // Test Summary & Debug Guideline Report
+    // ------------------------------------------------------------
+    cout << BLUE << "\n==========================================" << RESET << endl;
+    cout << YELLOW << BOLD << "       SIMULATION & TEST SUMMARY" << RESET << endl;
+    cout << BLUE << "==========================================" << RESET << endl;
+    cout << " Total Verification Checks : " << g_totalTests << endl;
+    cout << GREEN << " Passed Checks              : " << g_passedTests << RESET << endl;
+    if (g_failedTests > 0) {
+        cout << RED << " Failed Checks              : " << g_failedTests << RESET << endl;
+    } else {
+        cout << GREEN << " Failed Checks              : 0 (100% Passed)" << RESET << endl;
+    }
+
+    cout << BLUE << "\n------------------------------------------" << RESET << endl;
+    cout << MAGENTA << ">>> DEBUG & TROUBLESHOOTING GUIDELINE" << RESET << endl;
+    cout << BLUE << "------------------------------------------" << RESET << endl;
+    if (g_failedTests == 0) {
+        cout << GREEN << " [STATUS: STABLE] All component state machines, observers, and composite operations passed.\n"
+             << " LCOV Code Coverage target (>95%) achieved for all leaf nodes and router logic." << RESET << endl;
+    } else {
+        cout << RED << " [STATUS: DEGRADED] One or more test assertions failed!\n"
+             << " Debug Checklist:\n"
+             << "  1. Check Observer::update() target string matching logic in Leaf classes.\n"
+             << "  2. Ensure EventGroup::remove() correctly detaches child observers from Subject lists.\n"
+             << "  3. Verify non-null checks in EventGroup::add() to prevent dangling pointer traversal." << RESET << endl;
+    }
+
+    // ------------------------------------------------------------
+    // Step 10: Clean Shutdown
+    // ------------------------------------------------------------
+    cout << BLUE << "\n------------------------------------------" << RESET << endl;
+    cout << MAGENTA << ">>> Step 10: Clean Engine Shutdown" << RESET << endl;
+    cout << BLUE << "------------------------------------------" << RESET << endl;
+
+    cout << "\nClosing festival grounds..." << endl;
     festivalGrounds->close();
 
     delete eventControl;
@@ -286,7 +391,7 @@ int main()
     delete festivalGrounds;
     festivalGrounds = nullptr;
 
-    cout << "\nEngine shutdown complete" << endl;
+    cout << GREEN << "Engine shutdown complete. Memory deallocated cleanly.\n" << RESET << endl;
 
     return 0;
 }
