@@ -59,10 +59,8 @@ valgrind: $(TARGET)
 # Coverage build + HTML Report
 #   make coverage
 # ──────────────────────────────────────────
-$(COV_DIR):
-	mkdir -p $(COV_DIR)
-
-$(COV_DIR)/%.o: %.cpp | $(COV_DIR)
+$(COV_DIR)/%.o: %.cpp
+	@mkdir -p $(COV_DIR)
 	$(CXX) $(COVFLAGS) -c $< -o $@
 
 $(COV_TARGET): $(COV_OBJS)
