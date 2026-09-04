@@ -2,6 +2,8 @@ CXX      = g++
 CXXFLAGS = -std=c++11 -Wall -Wextra -I.
 COVFLAGS = $(CXXFLAGS) --coverage -fprofile-arcs -ftest-coverage -O0
 
+#COMMENTS FOR COMMENTING 
+
 TARGET     = eventflow
 COV_DIR    = coverage
 COV_TARGET = $(COV_DIR)/eventflow_cov
@@ -59,10 +61,8 @@ valgrind: $(TARGET)
 # Coverage build + HTML Report
 #   make coverage
 # ──────────────────────────────────────────
-$(COV_DIR):
-	mkdir -p $(COV_DIR)
-
-$(COV_DIR)/%.o: %.cpp | $(COV_DIR)
+$(COV_DIR)/%.o: %.cpp
+	@mkdir -p $(COV_DIR)
 	$(CXX) $(COVFLAGS) -c $< -o $@
 
 $(COV_TARGET): $(COV_OBJS)

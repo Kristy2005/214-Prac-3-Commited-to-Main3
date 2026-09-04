@@ -11,3 +11,15 @@ build/
 *.vpp_bak_*
 ~$*
 EOF
+
+# 1. Remove the coverage folder from Git tracking (keeps local files intact)
+git rm -r --cached coverage/
+
+# 2. Ensure coverage and generated build files are ignored in the future
+echo "coverage/" >> .gitignore
+echo "*.gcda" >> .gitignore
+echo "*.gcno" >> .gitignore
+
+# 3. Amend your previous commit so it only includes the Makefile changes
+git add .gitignore
+git commit --amend --no-edit
