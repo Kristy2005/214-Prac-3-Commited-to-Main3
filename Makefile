@@ -2,6 +2,8 @@ CXX      = g++
 CXXFLAGS = -std=c++11 -Wall -Wextra -I.
 COVFLAGS = $(CXXFLAGS) --coverage -fprofile-arcs -ftest-coverage -O0
 
+#COMMENTS FOR COMMENTING 
+
 TARGET     = eventflow
 COV_DIR    = coverage
 COV_TARGET = $(COV_DIR)/eventflow_cov
